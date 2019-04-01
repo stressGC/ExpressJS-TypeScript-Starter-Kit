@@ -1,5 +1,5 @@
 const express = require('express');
-const initializeRoutes = require('./routes/');
+import initializeRoutes from './routes';
 
 const app = express();
 app.set("port", process.env.PORT || 3000);

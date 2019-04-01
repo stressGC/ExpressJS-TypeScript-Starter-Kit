@@ -1,5 +1,6 @@
-const randomRouter =  require('./randomRouter');
+import numbersRouter from '../routes/numbers';
+import { Express } from 'express';
 
-module.exports = (app) => {
-  app.use('/random', randomRouter);
-}
+export default (app : Express) => {
+  app.use('/numbers', numbersRouter);
+};

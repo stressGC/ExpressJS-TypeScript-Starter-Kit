@@ -6,6 +6,7 @@ const server = app.listen(app.get("port"), () => {
     app.get("port"),
     app.get("env")
   );
+  console.log("Press CTRL-C to stop\n");
 });
 
 export default server;
