@@ -5,27 +5,26 @@ import { Logger, format } from 'winston';
 require('dotenv').config();
 
 const level = process.env.LOG_LEVEL || 'debug';
-const logFile = process.env.LOg_FILE || 'winston.logs';
+const logFile = process.env.LOG_FILE || 'winston.log';
 const logFilePath = path.join(__dirname, '../../../logs/', logFile);
 
 const logger: Logger = winston.createLogger({
-    format: format.combine(
+    format: format.combine( 
         format.timestamp(),
-        format.json()
+        format.json(),
     ),
     transports: [
         new winston.transports.Console({
             level,
-            colorize: true, 
+            colorize: true,
         }),
         new winston.transports.File({
             level,
             filename: logFilePath,
         })
     ],
-});
+}); 
 
-
-logger.error(logFilePath);
+logger.debug("App started");
 
 export default logger;

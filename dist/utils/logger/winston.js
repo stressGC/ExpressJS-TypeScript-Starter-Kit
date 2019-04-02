@@ -5,7 +5,7 @@ const path = require("path");
 const winston_1 = require("winston");
 require('dotenv').config();
 const level = process.env.LOG_LEVEL || 'debug';
-const logFile = process.env.LOg_FILE || 'winston.logs';
+const logFile = process.env.LOG_FILE || 'winston.log';
 const logFilePath = path.join(__dirname, '../../../logs/', logFile);
 const logger = winston.createLogger({
     format: winston_1.format.combine(winston_1.format.timestamp(), winston_1.format.json()),
@@ -20,6 +20,6 @@ const logger = winston.createLogger({
         })
     ],
 });
-logger.error(logFilePath);
+logger.debug("App started");
 exports.default = logger;
 //# sourceMappingURL=winston.js.map

@@ -3,11 +3,14 @@ Backend starter kit for the MERN stack
 
 ### Required :
 
-- Typescript compilator
-- Linter
-- ExpressJS
-- Mongoose Util
-- .env
-- logger
-- gitattribute
-- dev daemon
+V Typescript compilator
+X Linter
+V ExpressJS
+X Mongoose Util
+V .env
+V logger
+V gitattribute
+V dev daemon
+X http protection (cors / helmet etc)
+X bodyparser
+X JSDoc
