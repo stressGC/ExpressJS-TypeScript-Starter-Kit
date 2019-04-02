@@ -1,3 +1,4 @@
+"use strict";
 const numbersRouter = require('express').Router();
 import wordsC from '../controllers/words';
 
