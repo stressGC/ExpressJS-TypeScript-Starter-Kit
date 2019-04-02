@@ -1,22 +1,31 @@
 "use strict";
 const winston = require('winston');
-import { Logger } from 'winston';
+import * as path  from 'path';
+import { Logger, format } from 'winston';
 require('dotenv').config();
 
 const level = process.env.LOG_LEVEL || 'debug';
+const logFile = process.env.LOg_FILE || 'winston.logs';
+const logFilePath = path.join(__dirname, '../../../logs/', logFile);
 
 const logger: Logger = winston.createLogger({
+    format: format.combine(
+        format.timestamp(),
+        format.json()
+    ),
     transports: [
         new winston.transports.Console({
             level,
-            timestamp: () => new Date().toISOString(),
+            colorize: true, 
         }),
         new winston.transports.File({
             level,
-            timestamp: () => new Date().toISOString(),
-            filename: "../../../logs/winston.logs",
+            filename: logFilePath,
         })
     ],
 });
+
+
+logger.error(logFilePath);
 
 export default logger;
