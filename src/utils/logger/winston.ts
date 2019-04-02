@@ -1,17 +1,22 @@
 "use strict";
 const winston = require('winston');
+import { Logger } from 'winston';
+require('dotenv').config();
 
 const level = process.env.LOG_LEVEL || 'debug';
 
-const logger = new winston.Logger({
+const logger: Logger = winston.createLogger({
     transports: [
         new winston.transports.Console({
-            level: level,
-            timestamp: function () {
-                return (new Date()).toISOString();
-            }
+            level,
+            timestamp: () => new Date().toISOString(),
+        }),
+        new winston.transports.File({
+            level,
+            timestamp: () => new Date().toISOString(),
+            filename: "../../../logs/winston.logs",
         })
-    ]
+    ],
 });
 
-module.exports = logger;
+export default logger;

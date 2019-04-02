@@ -1,15 +1,20 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const winston = require('winston');
+require('dotenv').config();
 const level = process.env.LOG_LEVEL || 'debug';
-const logger = new winston.Logger({
+const logger = winston.createLogger({
     transports: [
         new winston.transports.Console({
-            level: level,
-            timestamp: function () {
-                return (new Date()).toISOString();
-            }
+            level,
+            timestamp: () => new Date().toISOString(),
+        }),
+        new winston.transports.File({
+            level,
+            timestamp: () => new Date().toISOString(),
+            filename: "../../../logs/winston.logs",
         })
-    ]
+    ],
 });
-module.exports = logger;
+exports.default = logger;
 //# sourceMappingURL=winston.js.map
