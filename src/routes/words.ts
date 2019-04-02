@@ -1,6 +1,6 @@
 "use strict";
 const numbersRouter = require('express').Router();
-import wordsC from '../controllers/words';
+import wordsC from '../controllers/words'; 
 
 const { echo, random } = wordsC;
 
