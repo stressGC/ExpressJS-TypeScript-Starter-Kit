@@ -12,7 +12,7 @@ const options = {
 /**
  * initialize mongoDB connection
  */
-const initialize = () => {
+const initialize = () : void => {
   /* remove deprecated options */
   mongoose.set('useCreateIndex', true);
   mongoose.set('useFindAndModify', false);

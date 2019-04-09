@@ -6,11 +6,14 @@ Backend starter kit for the MERN stack
 V Typescript compilator
 X Linter
 V ExpressJS
-X Mongoose Util
+V Mongoose Util
 V .env
 V logger
 V gitattribute
 V dev daemon
-X http protection (cors / helmet etc)
-X bodyparser
-X JSDoc
+V http protection (cors / helmet etc)
+V bodyparser
+V JSDoc
+X Model example
+X voir CI
+X Docker ?
