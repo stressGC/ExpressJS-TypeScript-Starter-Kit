@@ -8,4 +8,4 @@ export default (req: Request, res: Response, next: NextFunction) => {
   console.log(NumberSchema.getRandom(0, 12));
   logger.error(`number is ${result}`);
   return res.status(200).send({ result });
-};
+}
