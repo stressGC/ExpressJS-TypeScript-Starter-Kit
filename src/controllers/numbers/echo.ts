@@ -1,6 +1,7 @@
 "use strict";
 import { Request, Response } from "express";
 import logger from '../../utils/logger/winston';
+import * as boom from '@hapi/boom';
 
 /**
  * Handler that echoes the user input

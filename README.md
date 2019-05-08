@@ -29,7 +29,8 @@ Main components contained in this boilerplate
 - TypeScript auto-compilator
 - TSLint
 - Regular NodeJS API components : ExpressJS, Mongoose...
-- .env variables
+- Request validation
+- Environment variables
 - Loggers : Winston & Morgan
 - Git files : .gitignore & .gitattributes
 - Development daemon
@@ -73,6 +74,7 @@ root
 Things I am planning to add to this project.
 - Continous Integration Tools
 - Dockerfile
+- Integrate tests
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

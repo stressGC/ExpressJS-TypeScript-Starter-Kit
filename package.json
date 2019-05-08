@@ -35,6 +35,8 @@
   },
   "homepage": "https://github.com/stressGC/MERN-Backend#readme",
   "dependencies": {
+    "@hapi/boom": "^7.4.2",
+    "@types/hapi__boom": "^7.4.0",
     "@types/helmet": "0.0.43",
     "@types/morgan": "^1.7.35",
     "@typescript-eslint/eslint-plugin": "^1.5.0",
