@@ -35,17 +35,16 @@ Main components contained in this boilerplate.
 Things I am planning to add to this project.
 - Continous Integration Tool
 - Dockerfile
-- log file setup in .env
+- log files setup in .env
 - JSDoc implementation
+- Script to build the generated JS (+README section)
 
 ## Author
 **Georges Cosson** : [LinkedIn](https://www.linkedin.com/in/georges-cosson/) - [GitHub](https://github.com/stressGC)
 
 ## Licence
 
-MIT License
-
-Copyright (c) 2019 G. Cosson
+MIT License, Copyright (c) 2019 G. Cosson
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
