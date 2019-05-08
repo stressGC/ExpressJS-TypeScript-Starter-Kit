@@ -3,7 +3,7 @@
 import * as Boom from '@hapi/boom';
 import {NOT_A_NUMBER} from '../utils/lang';
 import { Request, Response, NextFunction } from 'express';
-import errorHandler from './errorHandler';
+import errorHandler from '.';
 
 /**
  * Validate the param is a Number

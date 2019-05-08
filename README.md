@@ -55,10 +55,14 @@ root
 │   |   └── [...]
 │   ├── routes
 │   |   ├── index.ts
-│   |   ├── [...]
+│   |   └── [...]
+│   ├── validators
+│   |   ├── index.ts
+│   |   └── [...]
 │   ├── utils
 │   |   ├── logger
-│   |   └── mongo.ts
+│   |   ├── mongo
+│   |   └── lang.ts
 │   ├── app.ts
 │   └── index.ts
 ├── dist
