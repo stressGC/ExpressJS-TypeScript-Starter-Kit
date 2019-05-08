@@ -37,7 +37,8 @@ Things I am planning to add to this project.
 - Dockerfile
 - log files setup in .env
 - JSDoc implementation
-- Script to build the generated JS (+README section)
+- Script to build the generated JS (+ README section)
+- Architecture in README
 
 ## Author
 **Georges Cosson** : [LinkedIn](https://www.linkedin.com/in/georges-cosson/) - [GitHub](https://github.com/stressGC)
