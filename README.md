@@ -79,6 +79,8 @@ Things I am planning to add to this project.
 - Continous Integration Tools
 - Dockerfile
 - Integrate tests
+- initMongo to asyncfunction
+- refactor 
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

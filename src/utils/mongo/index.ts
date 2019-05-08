@@ -22,7 +22,7 @@ const initialize = () : void => {
   mongoose.connect(`mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_HOST}/${process.env.MONGO_DB}`, options, err => {
     if (err) {
       logger.error(`Error while connecting to MongoDB: ${err}`);
-      process.exit(1);
+      return process.exit(1);
     }
 
     logger.debug(`Connected to MongoDB`);
@@ -31,7 +31,7 @@ const initialize = () : void => {
     mongoose.connection.on('error', err => logger.error(`MongoDB error: ${err}`));
     process.on('SIGINT', () => {
       mongoose.connection.close(() => {
-        process.exit(0);
+        return process.exit(0);
       });
     });
   });

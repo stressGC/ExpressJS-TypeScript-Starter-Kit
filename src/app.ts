@@ -6,6 +6,8 @@ import * as morgan from './utils/logger/morgan';
 import * as helmet from 'helmet';
 import cors from './middlewares/cors';
 import initMongo from './utils/mongo/';
+import genericErrorHandler from './middlewares/genericErrorHandler';
+
 require('dotenv').config();
 
 /* instanciate app */
@@ -30,5 +32,8 @@ app.use(cors);
 
 /* initialise API routes */
 app.use('/api', routes);
+
+/* error middlewares */
+app.use(genericErrorHandler)
 
 export default app;

@@ -3,7 +3,6 @@
 import * as Boom from '@hapi/boom';
 import {NOT_A_NUMBER} from '../utils/lang';
 import { Request, Response, NextFunction } from 'express';
-import errorHandler from '.';
 
 /**
  * Validate the param is a Number
@@ -12,10 +11,8 @@ import errorHandler from '.';
  * @param  {Response} res
  * @param  {NextFunction} next
  */
-export const paramIsNumber = (req: Request, res: Response, next: NextFunction) => {
+export const paramIsNumber = (req: Request, _res: Response, next: NextFunction) => {
   const toTest: number = req.params.number;
-
   if(!isNaN(toTest)) return next();
-
-  return errorHandler(res, Boom.badRequest(NOT_A_NUMBER));
+  return next(Boom.badRequest(NOT_A_NUMBER));
 }
