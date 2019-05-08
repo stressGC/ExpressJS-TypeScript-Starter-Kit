@@ -5,9 +5,9 @@ Boilerplate for the backend part of the MERN stack. Is it mainly composed of an 
 ## Quickstart
 
 ### Requirements :
-- NodeJS
-- NPM
-- MongoDB
+- NodeJS, downloadable [here](https://nodejs.org/en/)
+- NPM, downloadable [here](https://www.npmjs.com/)
+- MongoDB, downloadable [here](https://www.mongodb.com/)
 
 ### Installation
 Once these requirements are met, you can clone the repository and start your own project !
