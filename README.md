@@ -41,43 +41,32 @@ Main components contained in this boilerplate
 ## Project structure : 
 ```
 root
-├── dist
-├── logs
-├── node_modules
-├── public
 ├── src
 │   ├── controllers
-│   |   ├── numbers
-│   |   │   ├── random.ts
-│   |   │   └── echo.ts
-│   |   ├── [...]
-│   |   └── words
-│   |       ├── random.ts
-│   |       └── echo.ts
+│   |   └── [...]
+│   |       └── [...]
 │   ├── interfaces
-│   |   ├── INumberDocument.ts
 │   |   └── [...]
 │   ├── middlewares
 │   |   ├── cors.ts
 │   |   └── [...]
 │   ├── models
-│   |   ├── Number.ts
 │   |   └── [...]
 │   ├── routes
 │   |   ├── index.ts
-│   |   ├── numbers.ts
 │   |   ├── [...]
-│   |   └── words.ts
 │   ├── utils
 │   |   ├── logger
-│   |   │   ├── morgan.ts
-│   |   │   └── winston.ts
 │   |   └── mongo.ts
 │   ├── app.ts
 │   └── index.ts
+├── dist
+├── logs
+├── node_modules
+├── public
 ├── .env
-├── [...]
-└── tsconfig.json
+├── tsconfig.json
+└── [...]
 ```
 
 
