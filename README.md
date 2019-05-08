@@ -69,11 +69,15 @@ root
 └── [...]
 ```
 
-
 ## Roadmap:
 Things I am planning to add to this project.
 - Continous Integration Tools
 - Dockerfile
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+If you have any question regarding this repository, please contact me on [LinkedIn](https://www.linkedin.com/in/georges-cosson/).
 
 ## Author
 **Georges Cosson** : [LinkedIn](https://www.linkedin.com/in/georges-cosson/) - [GitHub](https://github.com/stressGC)
