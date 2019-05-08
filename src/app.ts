@@ -1,6 +1,7 @@
 "use strict";
+
 import * as express from 'express';
-import initializeRoutes from './routes';
+import initialiseRoutes from './routes';
 import * as morgan from './utils/logger/morgan';
 import * as helmet from 'helmet';
 import cors from './middlewares/cors';
@@ -27,7 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(cors);
 
-/* initialize API routes */
-initializeRoutes(app);
+/* initialise API routes */
+initialiseRoutes(app);
 
 export default app;

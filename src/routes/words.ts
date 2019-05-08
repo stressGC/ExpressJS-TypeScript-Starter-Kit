@@ -1,9 +1,10 @@
 "use strict";
+
 const numbersRouter = require('express').Router();
-import wordsC from '../controllers/words'; 
+import echo from '../controllers/words/echo'; 
+import random from '../controllers/words/random'; 
 
-const { echo, random } = wordsC;
-
+/* SUBROUTER */
 numbersRouter.get('/:word', echo); 
 numbersRouter.get('/', random);
 

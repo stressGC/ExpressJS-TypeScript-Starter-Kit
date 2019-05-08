@@ -1,7 +1,16 @@
 "use strict";
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 
-export default (req: Request, res: Response, next: NextFunction) => {
+/**
+ * Returns a random sequence of char
+ *
+ * @param {Request} _req
+ * @param {Response} res
+ * @returns {Response}
+ */
+const random = (_req: Request, res: Response): Response => {
   const result: string = "somewordidk";
   return res.status(200).send({ result });
-}
+};
+
+export default random;

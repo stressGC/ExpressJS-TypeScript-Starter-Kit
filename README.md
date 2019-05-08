@@ -9,16 +9,23 @@ Boilerplate for the backend part of the MERN stack. Is it mainly composed of an 
 - NPM
 - MongoDB
 
+### Installation
 Once these requirements are met, you can clone the repository and start your own project !
 ```
 git clone git@github.com:stressGC/MERN-Backend.git <localName>
 cd <localName>
 npm install
-npm run watch # dev mode, make sure MongoDB is running
 ```
+### Usage
+Make sure MongoDB is running
+```
+npm run watch # development mode, hot reload
+npm run start # production mode
+```
+Using tools like [PM2](http://pm2.keymetrics.io/) may be a more secure way of deploying to production.
 
 ## Components :
-Main components contained in this boilerplate.
+Main components contained in this boilerplate
 - TypeScript auto-compilator
 - TSLint
 - Regular NodeJS API components : ExpressJS, Mongoose...
@@ -41,12 +48,10 @@ root
 ├── src
 │   ├── controllers
 │   |   ├── numbers
-│   |   │   ├── index.ts
 │   |   │   ├── random.ts
 │   |   │   └── echo.ts
 │   |   ├── [...]
 │   |   └── words
-│   |       ├── index.ts
 │   |       ├── random.ts
 │   |       └── echo.ts
 │   ├── interfaces
@@ -65,9 +70,9 @@ root
 │   |   └── words.ts
 │   ├── utils
 │   |   ├── logger
-│   |   │   ├── morgan
-│   |   │   └── winston
-│   |   └── mongo
+│   |   │   ├── morgan.ts
+│   |   │   └── winston.ts
+│   |   └── mongo.ts
 │   ├── app.ts
 │   └── index.ts
 ├── .env
@@ -78,11 +83,8 @@ root
 
 ## Roadmap:
 Things I am planning to add to this project.
-- Continous Integration Tool
+- Continous Integration Tools
 - Dockerfile
-- log files setup in .env
-- JSDoc implementation
-- Script to build the generated JS (+ README section)
 
 ## Author
 **Georges Cosson** : [LinkedIn](https://www.linkedin.com/in/georges-cosson/) - [GitHub](https://github.com/stressGC)

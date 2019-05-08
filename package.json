@@ -4,6 +4,7 @@
   "description": "MERN stack backend starter kit",
   "main": "src/index.js",
   "scripts": {
+    "start": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch-ts": "tsc -w",
     "watch-node": "nodemon dist/index.js",

@@ -1,7 +1,17 @@
 "use strict";
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
+import NumberSchema from '../../models/Number';
 
-export default (req: Request, res: Response, next: NextFunction) => {
-  const result = Math.random() * 50000;
+/**
+ * Utility function that returns an Number between 0 & 500
+ *
+ * @param {Request} _req
+ * @param {Response} res
+ * @returns {Number} random Number between 0 & 500
+ */
+const random = (_req: Request, res: Response): Response => {
+  const result: Number = NumberSchema.getRandom(0, 500);
   return res.status(200).send({ result });
-}
+};
+
+export default random;

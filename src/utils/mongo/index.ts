@@ -3,6 +3,7 @@ import logger from './../logger/winston';
 
 require('dotenv').config();
 
+// Mongo options
 const options = {
   useNewUrlParser: true,
   user: process.env.MONGO_USER,

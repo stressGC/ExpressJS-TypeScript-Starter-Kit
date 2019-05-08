@@ -1,7 +1,16 @@
 "use strict";
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 
-export default (req: Request, res: Response, next: NextFunction) => {
+/**
+ * Echoes the provided word
+ *
+ * @param {Request} req
+ * @param {Response} res
+ * @returns {Response} 
+ */
+const echo = (req: Request, res: Response): Response => {
   const result: string = req.params.word;
   return res.status(200).send({ result });
-}
+;}
+
+export default echo;

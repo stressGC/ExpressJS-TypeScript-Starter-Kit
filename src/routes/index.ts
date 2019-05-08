@@ -5,7 +5,12 @@ import { Express } from 'express';
 import * as express from 'express';
 import * as path from 'path';
 
-export default (app : Express) => {
+/**
+ * Initialise all routes
+ *
+ * @param {Express} app
+ */
+const createRoutes = (app: Express): void => {
   /* expose public folder */
   app.use('/public', express.static(path.join(__dirname, '../../public')));
 
@@ -13,3 +18,5 @@ export default (app : Express) => {
   app.use('/numbers', numbersRouter);
   app.use('/words', wordsRouter);
 };
+
+export default createRoutes;
