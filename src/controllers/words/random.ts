@@ -1,5 +1,6 @@
 "use strict";
 import { Request, Response } from "express";
+import { OK } from 'http-status-codes';
 
 /**
  * Returns a random sequence of char
@@ -10,7 +11,7 @@ import { Request, Response } from "express";
  */
 const random = (_req: Request, res: Response): Response => {
   const result: string = "somewordidk";
-  return res.status(200).send({ result });
+  return res.status(OK).send({ result });
 };
 
 export default random;

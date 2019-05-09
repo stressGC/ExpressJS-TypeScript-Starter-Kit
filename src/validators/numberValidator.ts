@@ -12,7 +12,7 @@ import { Request, Response, NextFunction } from 'express';
  * @param  {NextFunction} next
  */
 export const paramIsNumber = (req: Request, _res: Response, next: NextFunction) => {
-  const toTest: number = req.params.number;
+  const toTest: any = req.params.number;
   if(!isNaN(toTest)) return next();
   return next(Boom.badRequest(NOT_A_NUMBER));
 }

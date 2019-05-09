@@ -1,5 +1,6 @@
 "use strict";
 import { Request, Response } from "express";
+import { OK } from 'http-status-codes';
 
 /**
  * Echoes the provided word
@@ -10,7 +11,7 @@ import { Request, Response } from "express";
  */
 const echo = (req: Request, res: Response): Response => {
   const result: string = req.params.word;
-  return res.status(200).send({ result });
+  return res.status(OK).send({ result });
 ;}
 
 export default echo;

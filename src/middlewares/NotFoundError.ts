@@ -1,6 +1,7 @@
 "use strict";
 
-import { Request, Response } from 'express';
+import { NOT_FOUND, getStatusText } from 'http-status-codes';
+import { Request, Response, NextFunction } from 'express';
 
 /**
  * Error response middleware for 404 not found. This middleware function should be at the very bottom of the stack.
@@ -9,11 +10,11 @@ import { Request, Response } from 'express';
  * @param {Response} res
  * @returns {Response}
  */
-const notFoundErrorHandler = (_req: Request, res: Response): Response => {
-  return res.status(404).json({
+const notFoundErrorHandler = (_req: Request, res: Response, _next: NextFunction): Response => {
+  return res.status(NOT_FOUND).json({
     error: {
-      code: 404,
-      message: "Error 404: Not Found",
+      code: NOT_FOUND,
+      message: getStatusText(NOT_FOUND),
     }
   });
 };

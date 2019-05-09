@@ -1,5 +1,6 @@
 "use strict";
 import { Request, Response } from "express";
+import { OK } from 'http-status-codes';
 import NumberSchema from '../../models/Number';
 
 /**
@@ -11,7 +12,7 @@ import NumberSchema from '../../models/Number';
  */
 const random = (_req: Request, res: Response): Response => {
   const result: Number = NumberSchema.getRandom(0, 500);
-  return res.status(200).send({ result });
+  return res.status(OK).send({ result });
 };
 
 export default random;
