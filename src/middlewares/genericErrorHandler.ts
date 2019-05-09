@@ -9,13 +9,12 @@ import logger from './../utils/logger/winston';
  * @param {*} err
  * @param {Request} req
  * @param {Response} res
- * @param {NextFunction} next
  */
-const genericErrorHandler = (err: any, req: Request, res: Response, next: NextFunction): void => {
+const genericErrorHandler = (err: any, _req: Request, res: Response): Response => {
   logger.debug(err.output.payload.message);
-  console.log(err.output.payload.message)
+
   if (err.isBoom) {
-    res.status(err.output.statusCode).json({
+    return res.status(err.output.statusCode).json({
       error: {
         code: err.output.statusCode,
         message: err.output.payload.message || err.output.payload.error
@@ -23,7 +22,7 @@ const genericErrorHandler = (err: any, req: Request, res: Response, next: NextFu
     });
   }
 
-  res.status(500).json({
+  return res.status(500).json({
     error: {
       code: 500,
       message: "Internal Error"

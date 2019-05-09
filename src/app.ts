@@ -7,6 +7,7 @@ import * as helmet from 'helmet';
 import cors from './middlewares/cors';
 import initMongo from './utils/mongo/';
 import genericErrorHandler from './middlewares/genericErrorHandler';
+import notFoundErrorHandler from './middlewares/NotFoundError';
 
 require('dotenv').config();
 
@@ -34,6 +35,7 @@ app.use(cors);
 app.use('/api', routes);
 
 /* error middlewares */
-app.use(genericErrorHandler)
+app.use(genericErrorHandler);
+app.use(notFoundErrorHandler)
 
 export default app;
