@@ -5,7 +5,7 @@ import routes from './routes';
 import * as morgan from './utils/logger/morgan';
 import * as helmet from 'helmet';
 import cors from './middlewares/cors';
-import initMongo from './utils/mongo/';
+import initMongo from './utils/mongo';
 import genericErrorHandler from './middlewares/genericErrorHandler';
 import notFoundErrorHandler from './middlewares/NotFoundError';
 

@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import logger from './../logger/winston';
+import logger from './logger/winston';
 
 require('dotenv').config();
 
