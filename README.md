@@ -11,33 +11,44 @@ Boilerplate for the backend part of the MERN stack. Is it mainly composed of an 
 
 ### Installation
 Once these requirements are met, you can clone the repository and start your own project !
-```
+```bash
 git clone git@github.com:stressGC/MERN-Backend.git <localName>
 cd <localName>
 npm install
 ```
 ### Usage
 Make sure MongoDB is running
-```
+```bash
 npm run watch # development mode, hot reload
-npm run start # production mode
+npm start # production mode
+npm test # launches the tests
 ```
 Using tools like [PM2](http://pm2.keymetrics.io/) may be a more secure way of deploying to production.
 
 ## Components :
-Main components contained in this boilerplate
-- TypeScript auto-compilator
-- TSLint
-- Regular NodeJS API components : ExpressJS, Mongoose...
+Main components contained in this boilerplate.
+
+**API basics**:
+- ExpressJS
+- Mongoose
+- Loggers : Winston & Morgan
+- HTTP protections (CORS / helmet...)
+- Utility modules (bodyparser...)
 - Request validation
 - Environment variables
-- Loggers : Winston & Morgan
+
+---
+
+**Code quality**:
+- TSLint
+- Tests (mocha & chai)
 - Git files : .gitignore & .gitattributes
+
+--- 
+**Development helpers**:
+- TypeScript auto-compilator
 - Development daemon
-- Various basic HTTP protections (CORS / helmet...)
-- Various utility modules (bodyparser...)
 - JSDoc support
-- Mongoose model example
 
 ## Project structure : 
 ```
@@ -65,6 +76,12 @@ root
 │   |   └── lang.ts
 │   ├── app.ts
 │   └── index.ts
+├── test
+│   ├── api
+│   |   └── [...]
+│   ├── unit
+│   |   └── [...]
+│   └── mocha.opts
 ├── dist
 ├── logs
 ├── node_modules
@@ -78,9 +95,7 @@ root
 Things I am planning to add to this project.
 - Continous Integration Tools
 - Dockerfile
-- Integrate tests
 - initMongo to asyncfunction
-- all http codes to http-codes module
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

@@ -6,7 +6,7 @@ import * as request from 'supertest';
 import * as HTTPStatus from 'http-status-codes';
 
 describe('test global API behavior', () => {
-  it('should return 404', (done) => {
+  it('should return 404 if no path matched', (done) => {
     const randomPath = '/somerandompath';
     request(app)
       .get(randomPath)
