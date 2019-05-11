@@ -4,7 +4,7 @@ import { NOT_FOUND, getStatusText } from 'http-status-codes';
 import { Request, Response, NextFunction } from 'express';
 
 /**
- * Error response middleware for 404 not found. This middleware function should be at the very bottom of the stack.
+ * Error response middleware for 404 not found
  *
  * @param {Request} _req
  * @param {Response} res

@@ -12,7 +12,6 @@ import logger from '../../utils/logger/winston';
  */
 export default (req: Request, res: Response): Response => {
   const result: Number = req.params.number;
-  console.log(result)
   logger.error(`number is ${result}`);
   return res.status(OK).send({ result });
 };

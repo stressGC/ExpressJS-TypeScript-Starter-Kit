@@ -5,15 +5,14 @@ import logger from './../utils/logger/winston';
 import { INTERNAL_SERVER_ERROR, getStatusText } from 'http-status-codes';
 
 /**
- * Generic error response middleware for validation and internal server errors.
+ * Generic error response middleware for validation and internal server errors
  *
- * @param {*} err
+ * @param {any} err
  * @param {Request} req
  * @param {Response} res
  */
 const genericErrorHandler = (err: any, _req: Request, res: Response, _next: NextFunction): Response => {
   logger.debug(err.output.payload.message);
-  console.log("___________" + err.output.payload.message);
   if (err.isBoom) {
     return res.status(err.output.statusCode).json({
       error: {
