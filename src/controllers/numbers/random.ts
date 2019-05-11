@@ -1,5 +1,6 @@
-"use strict";
-import { Request, Response } from "express";
+'use strict';
+
+import { Request, Response } from 'express';
 import { OK } from 'http-status-codes';
 import NumberSchema from '../../models/Number';
 

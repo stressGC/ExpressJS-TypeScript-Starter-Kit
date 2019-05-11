@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 import * as express from 'express';
 import routes from './routes';
@@ -15,12 +15,14 @@ require('dotenv').config();
 const app = express();
 
 /* set options */
-app.set("port", process.env.PORT || 3000);
-app.set("env", process.env.NODE_ENV || "dev");
-
+app.set('port', process.env.PORT || 3000);
+app.set('env', process.env.NODE_ENV || 'dev');
 /* set loggers */
-app.use(morgan.errorLogging);
-app.use(morgan.successLogging);
+
+if (app.get('env') !== 'test') {
+  app.use(morgan.errorLogging);
+  app.use(morgan.successLogging);
+}
 
 /* initialize MongoDB connection */
 initMongo();
@@ -36,6 +38,6 @@ app.use('/api', routes);
 
 /* error middlewares */
 app.use(genericErrorHandler);
-app.use(notFoundErrorHandler)
+app.use(notFoundErrorHandler);
 
 export default app;
