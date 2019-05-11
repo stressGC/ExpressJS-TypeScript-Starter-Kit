@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-import { Request, Response } from "express";
+import { Request, Response } from 'express';
 import { OK } from 'http-status-codes';
-import logger from '../../utils/logger/winston';
+import winston from '../../utils/logger/winston';
 
 /**
  * Handler that echoes the user input
@@ -12,6 +12,6 @@ import logger from '../../utils/logger/winston';
  */
 export default (req: Request, res: Response): Response => {
   const result: Number = req.params.number;
-  logger.error(`number is ${result}`);
+  winston.debug(`number is ${result}`);
   return res.status(OK).send({ result });
 };

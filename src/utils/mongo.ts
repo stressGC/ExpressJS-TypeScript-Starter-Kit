@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import logger from './logger/winston';
+import winston from './logger/winston';
 
 require('dotenv').config();
 
@@ -11,30 +11,37 @@ const options = {
 };
 
 /**
- * initialize mongoDB connection
+ * initialise mongoDB connection
  */
-const initialize = () : void => {
+const init = () => {
+  winston.debug('initialising mongo connection');
   /* remove deprecated options */
   mongoose.set('useCreateIndex', true);
   mongoose.set('useFindAndModify', false);
 
   /* connect */
-  mongoose.connect(`mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_HOST}/${process.env.MONGO_DB}`, options, err => {
-    if (err) {
-      logger.error(`Error while connecting to MongoDB: ${err}`);
-      return process.exit(1);
-    }
+  mongoose.connect(
+    `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_HOST}/${process.env.MONGO_DB}`,
+    options,
+    (err) => {
+      if (err) {
+        winston.error(`Error while connecting to MongoDB: ${err}`);
+        return process.exit(0);
+      }
 
-    logger.debug(`Connected to MongoDB`);
+      winston.debug(`Connected to MongoDB`);
 
     /* close mongo connection on SIGINT */
-    mongoose.connection.on('error', err => logger.error(`MongoDB error: ${err}`));
-    process.on('SIGINT', () => {
-      mongoose.connection.close(() => {
-        return process.exit(0);
+      mongoose.connection.on('error', err => winston.error(`MongoDB error: ${err}`));
+      process.on('SIGINT', () => {
+        mongoose.connection.close(() => {
+          return process.exit(0);
+        });
       });
-    });
-  });
+    },
+  );
 };
 
-export default initialize;
+export default {
+  init,
+};

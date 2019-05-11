@@ -3,11 +3,12 @@
 import * as express from 'express';
 import routes from './routes';
 import * as morgan from './utils/logger/morgan';
+import winston from './utils/logger/winston';
 import * as helmet from 'helmet';
 import cors from './middlewares/cors';
-import initMongo from './utils/mongo';
+import mongo from './utils/mongo';
 import genericErrorHandler from './middlewares/genericErrorHandler';
-import notFoundErrorHandler from './middlewares/NotFoundError';
+import notFoundErrorHandler from './middlewares/notFoundErrorHandler';
 
 require('dotenv').config();
 
@@ -17,15 +18,15 @@ const app = express();
 /* set options */
 app.set('port', process.env.PORT || 3000);
 app.set('env', process.env.NODE_ENV || 'dev');
-/* set loggers */
 
+/* set loggers */
 if (app.get('env') !== 'test') {
   app.use(morgan.errorLogging);
   app.use(morgan.successLogging);
 }
 
-/* initialize MongoDB connection */
-initMongo();
+/* initialise MongoDB connection */
+mongo.init();
 
 /* initialize middlewares */
 app.use(express.json());
