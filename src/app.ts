@@ -3,7 +3,6 @@
 import * as express from 'express';
 import routes from './routes';
 import * as morgan from './utils/logger/morgan';
-import winston from './utils/logger/winston';
 import * as helmet from 'helmet';
 import cors from './middlewares/cors';
 import mongo from './utils/mongo';

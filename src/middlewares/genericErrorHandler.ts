@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
+import winston from './../utils/logger/winston';
 import { Response, Request, NextFunction } from 'express';
-import logger from './../utils/logger/winston';
 import { INTERNAL_SERVER_ERROR, getStatusText } from 'http-status-codes';
 
 /**
@@ -11,14 +11,15 @@ import { INTERNAL_SERVER_ERROR, getStatusText } from 'http-status-codes';
  * @param {Request} req
  * @param {Response} res
  */
-const genericErrorHandler = (err: any, _req: Request, res: Response, _next: NextFunction): Response => {
-  logger.debug(err.output.payload.message);
+const genericErrorHandler = (err: any, req: Request, res: Response, _next: NextFunction): Response => { // tslint:disable: max-line-length
+  console.log("GENREIC ERROR HANDLER");
+  winston.debug(err.output.payload.message);
   if (err.isBoom) {
     return res.status(err.output.statusCode).json({
       error: {
         code: err.output.statusCode,
         message: err.output.payload.message || err.output.payload.error,
-      }
+      },
     });
   }
 
@@ -26,8 +27,8 @@ const genericErrorHandler = (err: any, _req: Request, res: Response, _next: Next
     error: {
       code: INTERNAL_SERVER_ERROR,
       message: getStatusText(INTERNAL_SERVER_ERROR),
-    }
+    },
   });
-}
+};
 
 export default genericErrorHandler;
