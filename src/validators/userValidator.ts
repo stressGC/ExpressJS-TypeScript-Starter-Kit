@@ -16,3 +16,5 @@ export const validateUser = [
   body('password', '"Password" field is missing').exists().isString(),
   body('password', '"Password" must be at least 8 characters long').isLength({ min: 8 }),
 ];
+
+export default validateUser;

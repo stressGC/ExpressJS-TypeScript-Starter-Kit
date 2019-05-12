@@ -1,9 +1,11 @@
 'use strict';
 
-const userRouter = require('express').Router();
+import { Router } from 'express';
 import * as userController from '../controllers/users';
 import validators from '../validators';
 import { USER_VALIDATION } from '../utils/constants';
+
+const userRouter = Router();
 
 /* SUBROUTER */
 userRouter.get('/', userController.getAll);

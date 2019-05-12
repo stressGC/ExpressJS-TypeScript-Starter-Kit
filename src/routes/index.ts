@@ -1,6 +1,5 @@
-"use strict";
+'use strict';
 
-import numbersRouter from '../routes/numbers';
 import usersRouter from '../routes/users';
 import { Router } from 'express';
 import * as express from 'express';
@@ -12,7 +11,6 @@ const router = Router();
 router.use('/public', express.static(path.join(__dirname, '../../public')));
 
 /* use our subrouters */
-router.use('/numbers', numbersRouter);
 router.use('/users', usersRouter);
 
 export default router;

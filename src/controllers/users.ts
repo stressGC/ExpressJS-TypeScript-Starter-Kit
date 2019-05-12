@@ -23,16 +23,16 @@ export const getAll = (req: Request, res: Response, next: NextFunction): void =>
 };
 
 export const create = (req: Request, res: Response, next: NextFunction): void => {
+  const { name, email, password } = req.body;
+
   const newUser = {
-    name: 'Georges',
-    email: 'some.email@domain.com',
-    password: 'whatevermypwordis',
+    name,
+    email,
+    password,
   };
 
   User
     .insert(newUser)
     .then((result: IUserDocument) => res.status(OK).json(result))
-    .catch((error: any) => {
-      next(error);
-    });
+    .catch((error: any) => next(error));
 };

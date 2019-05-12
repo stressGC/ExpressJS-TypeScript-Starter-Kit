@@ -14,7 +14,7 @@ const options = {
  * initialise mongoDB connection
  */
 const init = () => {
-  winston.debug('initialising mongo connection');
+
   /* remove deprecated options */
   mongoose.set('useCreateIndex', true);
   mongoose.set('useFindAndModify', false);

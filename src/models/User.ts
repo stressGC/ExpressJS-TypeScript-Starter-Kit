@@ -11,14 +11,14 @@ export interface IUser extends IUserDocument {
 
 export interface IUserModel extends Model<IUser> {
   fetchAll(): Promise<{}>;
-  insert(newUser: IUserDocument): Promise<{}>;
+  insert(newUser: any): Promise<{}>;
 }
 
 export const userSchema: Schema = new Schema({
   name: String,
   email: {
     type: String,
-    index: { unique: true, dropDups: true },
+    index: { unique: true },
   },
   createdAt: Number,
   password: String,
@@ -41,10 +41,13 @@ userSchema.statics.fetchAll = function () {
 };
 
 userSchema.statics.insert = function (newUser: any) {
-  console.log('inserting user...');
   return new Promise((resolve, reject) => {
-    this.create(newUser, (err: Error, user: IUserDocument) => {
-      if (err) reject(Boom.internal(getStatusText(INTERNAL_SERVER_ERROR)));
+    this.create(newUser, (err: any, user: IUserDocument) => {
+      if (err) {
+        console.log('error exists', err.code);
+        if (err.code === 11000) reject(Boom.badRequest('"Email is already taken'));
+        reject(Boom.internal(getStatusText(INTERNAL_SERVER_ERROR)));
+      }
       resolve(user);
     });
   });
