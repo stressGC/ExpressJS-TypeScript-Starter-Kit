@@ -4,6 +4,7 @@ import app from '../../src/app';
 import { expect } from 'chai';
 import * as request from 'supertest';
 import * as HTTPStatus from 'http-status-codes';
+import * as lang from '../../src/utils/lang';
 
 describe('User API is working', () => {
   let userId: number;
@@ -42,21 +43,23 @@ describe('User API is working', () => {
         userId = body.id;
       });
   });
-/*
-  it('should fail when trying to create user with same email', done => {
+
+  it('should fail when trying to create user with same email', (done) => {
     request(app)
-      .post('/api/register')
+      .post('/api/users/create')
       .send(user)
       .end((err, res) => {
         expect(err).to.equal(null);
         expect(res.status).to.equal(HTTPStatus.BAD_REQUEST);
-        expect(res.body).to.have.property('error');
-        expect(res.body.error.code).to.equal(HTTPStatus.BAD_REQUEST);
-        expect(res.body.error.message).to.equal(lang.emailTaken);
+        const { body } = res;
+        expect(body).to.have.property('error');
+        expect(body.error.code).to.equal(HTTPStatus.BAD_REQUEST);
+        expect(body.error.message).to.equal(lang.EMAIL_ALREADY_TAKEN);
         done();
       });
   });
 
+/*
   it('should return recently created user info', done => {
     request(app)
       .get(`/api/users/${userId}`)

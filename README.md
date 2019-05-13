@@ -98,6 +98,7 @@ Things I am planning to add to this project.
 - lint all files
 - update arch schema
 - remove password from responses
+- tests not on production DB
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

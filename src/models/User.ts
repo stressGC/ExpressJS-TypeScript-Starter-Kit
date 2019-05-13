@@ -4,7 +4,7 @@ import { Schema, Model, model } from 'mongoose';
 import IUserDocument from './../interfaces/IUserDocument';
 import * as Boom from '@hapi/boom';
 import { INTERNAL_SERVER_ERROR, getStatusText } from 'http-status-codes';
-import { RESSOURCE_NOT_FOUND } from '../utils/lang';
+import { RESSOURCE_NOT_FOUND, EMAIL_ALREADY_TAKEN } from '../utils/lang';
 
 export interface IUser extends IUserDocument {
 
@@ -58,7 +58,7 @@ userSchema.statics.insertOne = function (newUser: any) {
   return new Promise((resolve, reject) => {
     this.create(newUser, (err: any, user: IUserDocument) => {
       if (err) {
-        if (err.code === 11000) reject(Boom.badRequest('"Email is already taken'));
+        if (err.code === 11000) reject(Boom.badRequest(EMAIL_ALREADY_TAKEN));
         reject(Boom.internal(getStatusText(INTERNAL_SERVER_ERROR)));
       }
       resolve(user);
