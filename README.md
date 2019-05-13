@@ -93,11 +93,10 @@ root
 Things I am planning to add to this project.
 - Continous Integration Tools
 - Dockerfile
-- controller to user with CRUD (+ update tests)
+- update tests for CRUD
 - JWT
 - lint all files
 - update arch schema
-- update tests
 - remove password from responses
 
 ## Contributing

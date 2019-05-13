@@ -15,7 +15,7 @@ export interface IUserModel extends Model<IUser> {
   fetchByID(userID: string): Promise<{}>;
   insertOne(newUser: any): Promise<{}>;
   deleteByID(userID: string): Promise<{}>;
-  modifyByID(userID: string): Promise<{}>;
+  modifyByID(userID: string, modifications: {}): Promise<{}>;
 }
 
 export const userSchema: Schema = new Schema({
@@ -68,10 +68,13 @@ userSchema.statics.insertOne = function (newUser: any) {
 
 userSchema.statics.modifyByID = function (userID: string, modifications: {}) {
   return new Promise((resolve, reject) => {
-    this.findOneAndUpdate({ _id: userID}, modifications, { new: true }, (err: any, user: IUserDocument) => {
-      if (err) reject(Boom.internal(getStatusText(INTERNAL_SERVER_ERROR)));
-      if (!user) reject(Boom.notFound(RESSOURCE_NOT_FOUND));
-      resolve(user);
+    this.findOneAndUpdate(
+      { _id: userID }, modifications,
+      { new: true },
+      (err: any, user: IUserDocument) => {
+        if (err) reject(Boom.internal(getStatusText(INTERNAL_SERVER_ERROR)));
+        if (!user) reject(Boom.notFound(RESSOURCE_NOT_FOUND));
+        resolve(user);
     });
   });
 };

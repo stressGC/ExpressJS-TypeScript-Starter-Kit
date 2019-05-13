@@ -12,7 +12,7 @@ import { INTERNAL_SERVER_ERROR, getStatusText } from 'http-status-codes';
  * @param {Response} res
  */
 const genericErrorHandler = (err: any, req: Request, res: Response, next: NextFunction): Response => { // tslint:disable: max-line-length
-  console.log(err)
+  if (process.env.NODE_ENV === 'dev') console.log(err);
   if (err.isBoom) {
     winston.debug(err.output.payload.message);
     return res.status(err.output.statusCode).json({

@@ -1,6 +1,6 @@
 'use strict';
 
-import { body, param, oneOf, allOf } from 'express-validator/check';
+import { body, param, oneOf } from 'express-validator/check';
 
 export const validateUser = [
   body('name', '"Name" field is missing').exists().isString(),
@@ -22,8 +22,7 @@ export const validateModificationBody = [
     body('name').isString(),
     body('password', '"Password" must be at least 8 characters long').isLength({ min: 8 }),
     body('email', 'Invalid email').isEmail(),
-// tslint:disable-next-line: align
-  ], 'Empty body provided'),
+  ],    'Empty body provided'),
 ];
 
 export default validateUser;
