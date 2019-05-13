@@ -3,11 +3,11 @@
 import { validateUser } from './userValidator';
 import winston from '../utils/logger/winston';
 import validationErrorHandler from './validationErrorHandler';
-import * as constants from './../utils/constants';
+import { USER } from './../utils/constants';
 
 const getValidatorFunction = (identifier: string) => {
   switch (identifier) {
-    case constants.USER_VALIDATION:
+    case USER.VALIDATION:
       return validateUser;
     default:
       winston.error(`No validator found with identifier {${identifier}}`);

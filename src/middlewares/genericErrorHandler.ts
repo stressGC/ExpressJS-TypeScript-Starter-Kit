@@ -11,9 +11,9 @@ import { INTERNAL_SERVER_ERROR, getStatusText } from 'http-status-codes';
  * @param {Request} req
  * @param {Response} res
  */
-const genericErrorHandler = (err: any, req: Request, res: Response, _next: NextFunction): Response => { // tslint:disable: max-line-length
-  console.log("GENREIC ERROR HANDLER", err);
+const genericErrorHandler = (err: any, req: Request, res: Response, next: NextFunction): Response => { // tslint:disable: max-line-length
   winston.debug(err.output.payload.message);
+
   if (err.isBoom) {
     return res.status(err.output.statusCode).json({
       error: {

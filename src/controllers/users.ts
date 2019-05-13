@@ -16,10 +16,7 @@ export const getAll = (req: Request, res: Response, next: NextFunction): void =>
   User
     .fetchAll()
     .then(result => res.status(OK).json(result))
-    .catch((error) => {
-      console.log('err', error);
-      next(error);
-    });
+    .catch(error => next(error));
 };
 
 export const create = (req: Request, res: Response, next: NextFunction): void => {

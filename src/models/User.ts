@@ -44,7 +44,6 @@ userSchema.statics.insert = function (newUser: any) {
   return new Promise((resolve, reject) => {
     this.create(newUser, (err: any, user: IUserDocument) => {
       if (err) {
-        console.log('error exists', err.code);
         if (err.code === 11000) reject(Boom.badRequest('"Email is already taken'));
         reject(Boom.internal(getStatusText(INTERNAL_SERVER_ERROR)));
       }

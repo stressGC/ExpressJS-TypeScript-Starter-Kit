@@ -1,1 +1,5 @@
-export const USER_VALIDATION = 'user:validate';
+'use strict';
+
+export const USER = {
+  VALIDATION: 'user:validation',
+};
