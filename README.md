@@ -34,16 +34,14 @@ Main components contained in this boilerplate.
 - Loggers : Winston & Morgan
 - HTTP protections (CORS / helmet...)
 - Utility modules (bodyparser...)
+- Error middlewares
 - Request validation
 - Environment variables
-
 ---
-
 **Code quality**:
 - TSLint
 - Tests (mocha & chai)
 - Git files : .gitignore & .gitattributes
-
 --- 
 **Development helpers**:
 - TypeScript auto-compilator
@@ -99,7 +97,7 @@ Things I am planning to add to this project.
 - JWT
 - lint all files
 - update arch schema
-- remove numbers
+- update tests
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
