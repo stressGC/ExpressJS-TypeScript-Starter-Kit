@@ -46,7 +46,7 @@ userSchema.statics.fetchAll = function () {
 
 userSchema.statics.fetchByID = function (userID: string) {
   return new Promise((resolve, reject) => {
-    this.findOneById(userID, (err: any, user: IUserDocument) => {
+    this.findById(userID, (err: any, user: IUserDocument) => {
       if (err) reject(Boom.internal(getStatusText(INTERNAL_SERVER_ERROR)));
       if (!user) reject(Boom.notFound(RESSOURCE_NOT_FOUND));
       resolve(user);
@@ -75,7 +75,7 @@ userSchema.statics.modifyByID = function (userID: string, modifications: {}) {
         if (err) reject(Boom.internal(getStatusText(INTERNAL_SERVER_ERROR)));
         if (!user) reject(Boom.notFound(RESSOURCE_NOT_FOUND));
         resolve(user);
-    });
+      });
   });
 };
 

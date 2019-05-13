@@ -40,7 +40,7 @@ describe('User API is working', () => {
         expect(body.email).to.equal(email);
         expect(body.password).to.equal(password);
         done();
-        userId = body.id;
+        userId = body._id;
       });
   });
 
@@ -59,28 +59,28 @@ describe('User API is working', () => {
       });
   });
 
-/*
-  it('should return recently created user info', done => {
+  it('should return recently created user info', (done) => {
     request(app)
       .get(`/api/users/${userId}`)
       .end((err, res) => {
         expect(err).to.equal(null);
         expect(res.status).to.equal(HTTPStatus.OK);
-        expect(res.body).to.have.property('data');
-        expect(res.body.data).to.be.an('object');
-        expect(res.body.data).to.have.all.keys(
-          'id',
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body).to.have.all.keys(
+          '__v',
+          '_id',
           'name',
           'email',
-          'updated_at',
-          'created_at'
+          'createdAt',
+          'password',
         );
-        expect(res.body.data.name).to.equal(name);
-        expect(res.body.data.email).to.equal(email);
+        expect(body.name).to.equal(name);
+        expect(body.email).to.equal(email);
         done();
       });
   });
-
+/*
   it('should fail when user not found', done => {
     request(app)
       .get('/api/users/0')
