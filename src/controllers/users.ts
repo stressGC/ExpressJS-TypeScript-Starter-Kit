@@ -2,7 +2,7 @@
 
 import { Request, Response, NextFunction } from 'express';
 import { OK } from 'http-status-codes';
-import User, { userSchema } from './../models/User';
+import User from './../models/User';
 import IUserDocument from '../interfaces/IUserDocument';
 
 /**
@@ -19,6 +19,25 @@ export const getAll = (req: Request, res: Response, next: NextFunction): void =>
     .catch(error => next(error));
 };
 
+export const getByID = (req: Request, res: Response, next: NextFunction): void => {
+  const { userID } = req.params;
+
+  User
+    .fetchByID(userID)
+    .then((result: IUserDocument) => res.status(OK).json(result))
+    .catch((error: any) => next(error));
+};
+
+export const modifyByID = (req: Request, res: Response, next: NextFunction): void => {
+  const { userID } = req.params;
+  const modifications = req.body;
+
+  User
+    .modifyByID(userID, modifications)
+    .then((result: IUserDocument) => res.status(OK).json(result))
+    .catch((error: any) => next(error));
+};
+
 export const create = (req: Request, res: Response, next: NextFunction): void => {
   const { name, email, password } = req.body;
 
@@ -29,7 +48,16 @@ export const create = (req: Request, res: Response, next: NextFunction): void =>
   };
 
   User
-    .insert(newUser)
+    .insertOne(newUser)
+    .then((result: IUserDocument) => res.status(OK).json(result))
+    .catch((error: any) => next(error));
+};
+
+export const deleteByID = (req: Request, res: Response, next: NextFunction): void => {
+  const { userID } = req.params;
+
+  User
+    .deleteByID(userID)
     .then((result: IUserDocument) => res.status(OK).json(result))
     .catch((error: any) => next(error));
 };
