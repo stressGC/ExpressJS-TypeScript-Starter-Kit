@@ -74,7 +74,6 @@ Things I am planning to add to this project.
 - Dockerfile
 - JWT
 - lint all files
-- update arch schema
 - tests not on production DB
 - params sanit
 - exists in helper

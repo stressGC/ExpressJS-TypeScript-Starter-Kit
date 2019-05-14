@@ -19,9 +19,14 @@ const init = () => {
   mongoose.set('useCreateIndex', true);
   mongoose.set('useFindAndModify', false);
 
+  const DB_NAME = process.env.NODE_ENV === 'test' ?
+    process.env.MONGO_TEST_DB
+    :
+    process.env.MONGO_DB;
+console.log(DB_NAME)
   /* connect */
   mongoose.connect(
-    `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_HOST}/${process.env.MONGO_DB}`,
+    `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_HOST}/${DB_NAME}`,
     options,
     (err) => {
       if (err) {
@@ -29,7 +34,7 @@ const init = () => {
         return process.exit(0);
       }
 
-      winston.debug(`Connected to MongoDB`);
+      winston.debug('Connected to MongoDB');
 
     /* close mongo connection on SIGINT */
       mongoose.connection.on('error', err => winston.error(`MongoDB error: ${err}`));
