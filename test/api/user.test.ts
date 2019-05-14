@@ -170,6 +170,7 @@ describe('User API is working', () => {
   /**
     * USER MODIFICATION
     **/
+
   it('should update user', (done) => {
     const newName = 'someNewName';
     request(app)
@@ -191,6 +192,22 @@ describe('User API is working', () => {
         done();
       });
   });
+
+  it('should fail when passing empty body', (done) => {
+    request(app)
+      .put(`/api/users/${userId}`)
+      .send({ wrongKey: 'w/e value' })
+      .end((err, res) => {
+        expect(err).to.equal(null);
+        expect(res.status).to.equal(HTTPStatus.BAD_REQUEST);
+        const { body } = res;
+        expect(body).to.have.property('error');
+        expect(body.error.code).to.equal(HTTPStatus.BAD_REQUEST);
+        expect(body.error.data[0].msg).to.equal(lang.EMPTY_BODY);
+        done();
+      });
+  });
+
   /**
     * USER DELETION
     **/
