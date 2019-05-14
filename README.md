@@ -74,9 +74,9 @@ Things I am planning to add to this project.
 - Dockerfile
 - JWT
 - lint all files
-- tests not on production DB
 - params sanit
 - exists in helper
+- wait mongo connection on launch
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

@@ -23,7 +23,7 @@ const init = () => {
     process.env.MONGO_TEST_DB
     :
     process.env.MONGO_DB;
-console.log(DB_NAME)
+
   /* connect */
   mongoose.connect(
     `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_HOST}/${DB_NAME}`,

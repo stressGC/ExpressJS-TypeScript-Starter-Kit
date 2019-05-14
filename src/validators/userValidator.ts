@@ -10,7 +10,9 @@ import * as lang from './../utils/lang';
  * @param {string} fieldName
  */
 export const exists = (fieldName: string, where: 'body' | 'param') => {
-  if (where === 'param') return param(fieldName, lang.fieldMissing(fieldName)).exists();
+  if (where === 'param') {
+    return param(fieldName, lang.fieldMissing(fieldName)).exists().not().isEmpty();
+  }
   return body(fieldName, lang.fieldMissing(fieldName)).exists();
 };
 
@@ -21,9 +23,16 @@ const MISSING_EMAIL = exists('email', 'body');
 const MISSING_USERID = exists('userID', 'param');
 
 /* INVALID */
-const INVALID_PASSWORD_LENGTH = body('password', lang.fieldLengthInvalid('password', 8)).isString().isLength({ min: 8 });
-const INVALID_EMAIL_IS_EMAIL = body('email', lang.fieldInvalid('email')).isEmail();
-const INVALID_ID_NOT_MONGOID = param('userID', lang.fieldInvalid('userID')).isMongoId();
+const INVALID_PASSWORD_LENGTH = body('password', lang.fieldLengthInvalid('password', 8))
+                                  .isString()
+                                  .isLength({ min: 8 })
+                                  .trim()
+                                  .escape();
+const INVALID_EMAIL_IS_EMAIL =  body('email', lang.fieldInvalid('email'))
+                                  .isEmail()
+                                  .normalizeEmail();
+const INVALID_ID_NOT_MONGOID = param('userID', lang.fieldInvalid('userID'))
+                                  .isMongoId();
 
 /**
  * password field is valid

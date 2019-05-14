@@ -2,9 +2,12 @@
 
 import app from '../../src/app';
 import { expect } from 'chai';
+import * as mongoose from 'mongoose';
 import * as request from 'supertest';
 import * as HTTPStatus from 'http-status-codes';
 import * as lang from '../../src/utils/lang';
+
+const randomNumber = Math.floor(Math.random() * 1000) + 1;
 
 describe('User API is working', () => {
   let userId: string;
@@ -15,7 +18,7 @@ describe('User API is working', () => {
 
   before(() => {
     name = 'Georges Cosson';
-    email = 'gcosson@example.com';
+    email = `gcosson${randomNumber}@example.com`;
     password = 'somepassword';
     user = { name, email, password };
   });
