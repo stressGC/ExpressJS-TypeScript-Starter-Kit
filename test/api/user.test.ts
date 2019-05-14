@@ -19,7 +19,11 @@ describe('User API is working', () => {
     password = 'somepassword';
     user = { name, email, password };
   });
-/*
+
+  /**
+   * USER CREATION
+   **/
+
   it('should create new user', (done) => {
     request(app)
       .post('/api/users/create')
@@ -43,8 +47,7 @@ describe('User API is working', () => {
         userId = body._id;
       });
   });
-*/
-  userId = '5cd9002d6d3e093fbc0b54d2';
+
   it('should fail when trying to create user with same email', (done) => {
     request(app)
       .post('/api/users/create')
@@ -59,6 +62,40 @@ describe('User API is working', () => {
         done();
       });
   });
+
+  it('should fail when passing invalid body', (done) => {
+    request(app)
+      .post('/api/users/create')
+      .send({ name: 'correctName', email:'incorrect@mail', password: 'correctPassword' })
+      .end((err, res) => {
+        expect(err).to.equal(null);
+        expect(res.status).to.equal(HTTPStatus.BAD_REQUEST);
+        const { body } = res;
+        expect(body).to.have.property('error');
+        expect(body.error.code).to.equal(HTTPStatus.BAD_REQUEST);
+        expect(body.error.data[0].msg).to.equal(lang.fieldInvalid('email'));
+        done();
+      });
+  });
+
+  it('should fail when passing incomplete body', (done) => {
+    request(app)
+      .post('/api/users/create')
+      .send({ name: 'correctName', wrongKey: 'email@some.com', password: 'correctPassword' })
+      .end((err, res) => {
+        expect(err).to.equal(null);
+        expect(res.status).to.equal(HTTPStatus.BAD_REQUEST);
+        const { body } = res;
+        expect(body).to.have.property('error');
+        expect(body.error.code).to.equal(HTTPStatus.BAD_REQUEST);
+        expect(body.error.data[0].msg).to.equal(lang.fieldMissing('email'));
+        done();
+      });
+  });
+
+  /**
+   * USER GET
+   **/
 
   it('should return recently created user info', (done) => {
     request(app)
@@ -110,23 +147,81 @@ describe('User API is working', () => {
         done();
       });
   });
-/*
-  it('should return users list', done => {
+
+  it('should return users list', (done) => {
     request(app)
       .get('/api/users')
       .end((err, res) => {
         expect(err).to.equal(null);
         expect(res.status).to.equal(HTTPStatus.OK);
-        expect(res.body).to.have.property('data');
-        expect(res.body.data).to.be.an('array');
-        expect(res.body.data[0]).to.have.all.keys(
-          'id',
+        expect(res.body).to.be.an('array');
+        expect(res.body[0]).to.have.all.keys(
+          '_id',
           'name',
           'email',
-          'updated_at',
-          'created_at'
+          'createdAt',
+          'password',
+          '__v',
         );
         done();
       });
-  });*/
+  });
+
+  /**
+    * USER MODIFICATION
+    **/
+  it('should update user', (done) => {
+    const newName = 'someNewName';
+    request(app)
+      .put(`/api/users/${userId}`)
+      .send({ name: newName })
+      .end((err, res) => {
+        expect(err).to.equal(null);
+        expect(res.status).to.equal(HTTPStatus.OK);
+        expect(res.body).to.have.all.keys(
+          '_id',
+          'name',
+          'email',
+          'createdAt',
+          'password',
+          '__v',
+        );
+        expect(res.body._id).to.equal(userId);
+        expect(res.body.name).to.equal(newName);
+        done();
+      });
+  });
+  /**
+    * USER DELETION
+    **/
+  it('should delete user', (done) => {
+    request(app)
+      .delete(`/api/users/${userId}`)
+      .end((err, res) => {
+        /* deletion returns correct informations */
+        expect(err).to.equal(null);
+        expect(res.status).to.equal(HTTPStatus.OK);
+        expect(res.body._id).to.be.equal(userId);
+        expect(res.body).to.have.all.keys(
+          '_id',
+          'name',
+          'email',
+          'createdAt',
+          'password',
+          '__v',
+        );
+
+        /* and the user has been successfully deleted */
+        request(app)
+          .get(`/api/users/${userId}`)
+          .end((err, res) => {
+            expect(err).to.equal(null);
+            expect(res.status).to.equal(HTTPStatus.NOT_FOUND);
+            expect(res.body).to.have.property('error');
+            expect(res.body.error.code).to.equal(HTTPStatus.NOT_FOUND);
+            expect(res.body.error.message).to.equal(lang.RESSOURCE_NOT_FOUND);
+            done();
+          });
+      });
+  });
 });

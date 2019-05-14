@@ -2,7 +2,7 @@
 
 import { Router } from 'express';
 import * as userController from '../controllers/users';
-import validators from '../validators/helper';
+import * as validators from '../validators/helper';
 import { USER } from '../utils/constants';
 
 const userRouter = Router();

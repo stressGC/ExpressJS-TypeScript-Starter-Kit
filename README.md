@@ -97,9 +97,10 @@ Things I am planning to add to this project.
 - JWT
 - lint all files
 - update arch schema
-- remove password from responses
+- remove password from responses + "__v" and update tests (should not cotain password and update)
 - tests not on production DB
 - params sanit
+- exists in helper
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
