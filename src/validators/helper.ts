@@ -4,7 +4,7 @@
 import { validateUser, validateUserID, validateModificationBody } from './userValidator';
 import winston from '../utils/logger/winston';
 import validationErrorHandler from './validationErrorHandler';
-import { USER } from './../utils/constants';
+import { USER } from '../utils/constants';
 import * as lang from '../utils/lang';
 import { body } from 'express-validator/check';
 
@@ -22,11 +22,8 @@ const getValidatorFunction = (identifier: string) => {
   }
 };
 
-const exists = (fieldName: string) => body(fieldName, lang.fieldMissing(fieldName)).exists();
-
 const get = (identifier: string) => [...getValidatorFunction(identifier), validationErrorHandler];
 
 export default {
   get,
-  exists,
 };

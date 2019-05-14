@@ -2,14 +2,23 @@
 'use strict';
 
 import { body, param, oneOf, ValidationChain } from 'express-validator/check';
-import validator from './index';
 import * as lang from './../utils/lang';
 
+/**
+ * returns a 'is_present' validator based of fieldName
+ *
+ * @param {string} fieldName
+ */
+const exists = (fieldName: string, where: 'body' | 'param') => {
+  if(where === 'param') return param(fieldName, lang.fieldMissing(fieldName)).exists();
+  return body(fieldName, lang.fieldMissing(fieldName)).exists();
+}
+
 /* MISSING */
-const MISSING_PASSWORD = validator.exists('password');
-const MISSING_NAME = validator.exists('name');
-const MISSING_EMAIL = validator.exists('email');
-const MISSING_USERID = validator.exists('userID');
+const MISSING_PASSWORD = exists('password', 'body');
+const MISSING_NAME = exists('name', 'body');
+const MISSING_EMAIL = exists('email', 'body');
+const MISSING_USERID = exists('userID', 'param');
 
 /* INVALID */
 const INVALID_PASSWORD_LENGTH = body('password', lang.fieldLengthInvalid('password', 8)).isString().isLength({ min: 8 });
