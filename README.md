@@ -53,39 +53,18 @@ Main components contained in this boilerplate.
 root
 ├── src
 │   ├── controllers
-│   |   └── [...]
-│   |       └── [...]
 │   ├── interfaces
-│   |   └── [...]
 │   ├── middlewares
-│   |   ├── cors.ts
-│   |   └── [...]
 │   ├── models
-│   |   └── [...]
 │   ├── routes
-│   |   ├── index.ts
-│   |   └── [...]
 │   ├── validators
-│   |   ├── index.ts
-│   |   └── [...]
 │   ├── utils
-│   |   ├── logger
-│   |   ├── mongo
-│   |   └── lang.ts
 │   ├── app.ts
 │   └── index.ts
 ├── test
 │   ├── api
-│   |   └── [...]
 │   ├── unit
-│   |   └── [...]
 │   └── mocha.opts
-├── dist
-├── logs
-├── node_modules
-├── public
-├── .env
-├── tsconfig.json
 └── [...]
 ```
 
@@ -96,7 +75,6 @@ Things I am planning to add to this project.
 - JWT
 - lint all files
 - update arch schema
-- remove password from responses + "__v" and update tests (should not cotain password and update)
 - tests not on production DB
 - params sanit
 - exists in helper
