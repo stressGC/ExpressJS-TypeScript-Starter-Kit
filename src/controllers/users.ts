@@ -49,7 +49,7 @@ export const create = (req: Request, res: Response, next: NextFunction): void =>
 
   User
     .insertOne(newUser)
-    .then((result: IUserDocument) => res.status(OK).json(result))
+    .then(result => res.status(OK).json(result))
     .catch((error: any) => next(error));
 };
 

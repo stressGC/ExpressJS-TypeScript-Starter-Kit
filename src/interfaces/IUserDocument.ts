@@ -1,4 +1,4 @@
-import { Document } from 'mongoose';
+import { Schema, Document } from 'mongoose';
 
 /**
  * Interface of a User document.

@@ -93,7 +93,6 @@ root
 Things I am planning to add to this project.
 - Continous Integration Tools
 - Dockerfile
-- update tests for CRUD
 - JWT
 - lint all files
 - update arch schema
