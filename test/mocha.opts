@@ -2,3 +2,4 @@
 #--reporter dot
 --watch-extensions ts
 test/**/*.test.ts
+--timeout 5000

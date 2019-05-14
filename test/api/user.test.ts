@@ -7,7 +7,7 @@ import * as HTTPStatus from 'http-status-codes';
 import * as lang from '../../src/utils/lang';
 
 describe('User API is working', () => {
-  let userId: number;
+  let userId: string;
   let name: string;
   let email: string;
   let password: string;
@@ -19,7 +19,7 @@ describe('User API is working', () => {
     password = 'somepassword';
     user = { name, email, password };
   });
-
+/*
   it('should create new user', (done) => {
     request(app)
       .post('/api/users/create')
@@ -43,7 +43,8 @@ describe('User API is working', () => {
         userId = body._id;
       });
   });
-
+*/
+  userId = '5cd9002d6d3e093fbc0b54d2';
   it('should fail when trying to create user with same email', (done) => {
     request(app)
       .post('/api/users/create')
@@ -80,21 +81,36 @@ describe('User API is working', () => {
         done();
       });
   });
-/*
-  it('should fail when user not found', done => {
+
+  it('should fail when user not found', (done) => {
+    const randomValidMongoID = '5cd8e8437bcac443f85d358a';
     request(app)
-      .get('/api/users/0')
-      .send(user)
+      .get(`/api/users/${randomValidMongoID}`)
       .end((err, res) => {
         expect(err).to.equal(null);
         expect(res.status).to.equal(HTTPStatus.NOT_FOUND);
         expect(res.body).to.have.property('error');
         expect(res.body.error.code).to.equal(HTTPStatus.NOT_FOUND);
-        expect(res.body.error.message).to.equal(lang.userNotFound);
+        expect(res.body.error.message).to.equal(lang.RESSOURCE_NOT_FOUND);
         done();
       });
   });
 
+  it('should fail when invalid MongoID is provided', (done) => {
+    const randomInvalidMongoID = '5cd8e8437bcac443';
+    request(app)
+      .get(`/api/users/${randomInvalidMongoID}`)
+      .end((err, res) => {
+        expect(err).to.equal(null);
+        expect(res.status).to.equal(HTTPStatus.BAD_REQUEST);
+        const { body } = res;
+        expect(body).to.have.property('error');
+        expect(body.error.code).to.equal(HTTPStatus.BAD_REQUEST);
+        expect(body.error.message).to.equal(HTTPStatus.getStatusText(HTTPStatus.BAD_REQUEST));
+        done();
+      });
+  });
+/*
   it('should return users list', done => {
     request(app)
       .get('/api/users')
