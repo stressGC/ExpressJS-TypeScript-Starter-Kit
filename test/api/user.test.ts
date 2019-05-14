@@ -33,16 +33,13 @@ describe('User API is working', () => {
         expect(res.status).to.equal(HTTPStatus.OK);
         const { body } = res;
         expect(body).to.have.all.keys(
-          '__v',
           '_id',
           'name',
           'email',
           'createdAt',
-          'password',
         );
         expect(body.name).to.equal(name);
         expect(body.email).to.equal(email);
-        expect(body.password).to.equal(password);
         done();
         userId = body._id;
       });
@@ -106,12 +103,10 @@ describe('User API is working', () => {
         const { body } = res;
         expect(body).to.be.an('object');
         expect(body).to.have.all.keys(
-          '__v',
           '_id',
           'name',
           'email',
           'createdAt',
-          'password',
         );
         expect(body.name).to.equal(name);
         expect(body.email).to.equal(email);
@@ -160,8 +155,6 @@ describe('User API is working', () => {
           'name',
           'email',
           'createdAt',
-          'password',
-          '__v',
         );
         done();
       });
@@ -184,8 +177,6 @@ describe('User API is working', () => {
           'name',
           'email',
           'createdAt',
-          'password',
-          '__v',
         );
         expect(res.body._id).to.equal(userId);
         expect(res.body.name).to.equal(newName);
@@ -224,8 +215,6 @@ describe('User API is working', () => {
           'name',
           'email',
           'createdAt',
-          'password',
-          '__v',
         );
 
         /* and the user has been successfully deleted */
