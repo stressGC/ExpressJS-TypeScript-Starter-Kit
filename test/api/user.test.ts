@@ -38,6 +38,10 @@ describe('User API is working', () => {
           'email',
           'createdAt',
         );
+        expect(body).not.to.have.any.keys(
+          '__v',
+          'password',
+        );
         expect(body.name).to.equal(name);
         expect(body.email).to.equal(email);
         done();
@@ -108,6 +112,10 @@ describe('User API is working', () => {
           'email',
           'createdAt',
         );
+        expect(body).not.to.have.any.keys(
+          '__v',
+          'password',
+        );
         expect(body.name).to.equal(name);
         expect(body.email).to.equal(email);
         done();
@@ -121,9 +129,10 @@ describe('User API is working', () => {
       .end((err, res) => {
         expect(err).to.equal(null);
         expect(res.status).to.equal(HTTPStatus.NOT_FOUND);
-        expect(res.body).to.have.property('error');
-        expect(res.body.error.code).to.equal(HTTPStatus.NOT_FOUND);
-        expect(res.body.error.message).to.equal(lang.RESSOURCE_NOT_FOUND);
+        const { body } = res;
+        expect(body).to.have.property('error');
+        expect(body.error.code).to.equal(HTTPStatus.NOT_FOUND);
+        expect(body.error.message).to.equal(lang.RESSOURCE_NOT_FOUND);
         done();
       });
   });
@@ -149,12 +158,17 @@ describe('User API is working', () => {
       .end((err, res) => {
         expect(err).to.equal(null);
         expect(res.status).to.equal(HTTPStatus.OK);
-        expect(res.body).to.be.an('array');
-        expect(res.body[0]).to.have.all.keys(
+        const { body } = res;
+        expect(body).to.be.an('array');
+        expect(body[0]).to.have.all.keys(
           '_id',
           'name',
           'email',
           'createdAt',
+        );
+        expect(body[0]).not.to.have.any.keys(
+          '__v',
+          'password',
         );
         done();
       });
@@ -171,15 +185,20 @@ describe('User API is working', () => {
       .send({ name: newName })
       .end((err, res) => {
         expect(err).to.equal(null);
-        expect(res.status).to.equal(HTTPStatus.OK);
-        expect(res.body).to.have.all.keys(
+        const { status, body } = res;
+        expect(status).to.equal(HTTPStatus.OK);
+        expect(body).to.have.all.keys(
           '_id',
           'name',
           'email',
           'createdAt',
         );
-        expect(res.body._id).to.equal(userId);
-        expect(res.body.name).to.equal(newName);
+        expect(body).not.to.have.any.keys(
+          '__v',
+          'password',
+        );
+        expect(body._id).to.equal(userId);
+        expect(body.name).to.equal(newName);
         done();
       });
   });
@@ -190,8 +209,8 @@ describe('User API is working', () => {
       .send({ wrongKey: 'w/e value' })
       .end((err, res) => {
         expect(err).to.equal(null);
-        expect(res.status).to.equal(HTTPStatus.BAD_REQUEST);
-        const { body } = res;
+        const { body, status } = res;
+        expect(status).to.equal(HTTPStatus.BAD_REQUEST);
         expect(body).to.have.property('error');
         expect(body.error.code).to.equal(HTTPStatus.BAD_REQUEST);
         expect(body.error.data[0].msg).to.equal(lang.EMPTY_BODY);
@@ -208,24 +227,29 @@ describe('User API is working', () => {
       .end((err, res) => {
         /* deletion returns correct informations */
         expect(err).to.equal(null);
-        expect(res.status).to.equal(HTTPStatus.OK);
-        expect(res.body._id).to.be.equal(userId);
-        expect(res.body).to.have.all.keys(
+        const { status, body } = res;
+        expect(status).to.equal(HTTPStatus.OK);
+        expect(body._id).to.be.equal(userId);
+        expect(body).to.have.all.keys(
           '_id',
           'name',
           'email',
           'createdAt',
         );
-
+        expect(body).not.to.have.any.keys(
+          '__v',
+          'password',
+        );
         /* and the user has been successfully deleted */
         request(app)
           .get(`/api/users/${userId}`)
           .end((err, res) => {
             expect(err).to.equal(null);
-            expect(res.status).to.equal(HTTPStatus.NOT_FOUND);
-            expect(res.body).to.have.property('error');
-            expect(res.body.error.code).to.equal(HTTPStatus.NOT_FOUND);
-            expect(res.body.error.message).to.equal(lang.RESSOURCE_NOT_FOUND);
+            const { status, body } = res;
+            expect(status).to.equal(HTTPStatus.NOT_FOUND);
+            expect(body).to.have.property('error');
+            expect(body.error.code).to.equal(HTTPStatus.NOT_FOUND);
+            expect(body.error.message).to.equal(lang.RESSOURCE_NOT_FOUND);
             done();
           });
       });
