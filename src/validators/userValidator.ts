@@ -1,14 +1,15 @@
-// tslint:disable: max-line-length
+// tslint:disable: max-line-length import-name
 'use strict';
 
 import { body, param, oneOf, ValidationChain } from 'express-validator/check';
+import validator from './index';
 import * as lang from './../utils/lang';
 
 /* MISSING */
-const MISSING_PASSWORD = body('password', lang.fieldMissing('password')).exists();
-const MISSING_NAME = body('name', lang.fieldMissing('name')).exists();
-const MISSING_EMAIL = body('email', lang.fieldMissing('email')).exists();
-const MISSING_USERID = param('userID', lang.fieldMissing('userID')).exists();
+const MISSING_PASSWORD = validator.exists('password');
+const MISSING_NAME = validator.exists('name');
+const MISSING_EMAIL = validator.exists('email');
+const MISSING_USERID = validator.exists('userID');
 
 /* INVALID */
 const INVALID_PASSWORD_LENGTH = body('password', lang.fieldLengthInvalid('password', 8)).isString().isLength({ min: 8 });
