@@ -74,7 +74,6 @@ Things I am planning to add to this project.
 - Dockerfile
 - JWT
 - lint all files
-- params sanit
 - exists in helper
 - wait mongo connection on launch
 

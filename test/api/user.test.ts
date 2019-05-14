@@ -2,7 +2,6 @@
 
 import app from '../../src/app';
 import { expect } from 'chai';
-import * as mongoose from 'mongoose';
 import * as request from 'supertest';
 import * as HTTPStatus from 'http-status-codes';
 import * as lang from '../../src/utils/lang';

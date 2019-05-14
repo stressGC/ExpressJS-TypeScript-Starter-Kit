@@ -13,7 +13,7 @@ export const exists = (fieldName: string, where: 'body' | 'param') => {
   if (where === 'param') {
     return param(fieldName, lang.fieldMissing(fieldName)).exists().not().isEmpty();
   }
-  return body(fieldName, lang.fieldMissing(fieldName)).exists();
+  return body(fieldName, lang.fieldMissing(fieldName)).exists().not().isEmpty();
 };
 
 /* MISSING */
