@@ -5,8 +5,6 @@ jobs:
       - image: circleci/node:9.4
       - image: circleci/mongo:3.6.2
 
-    working_directory: ~/repo
-
     steps:
       - run: npm install
       - run: npm test
