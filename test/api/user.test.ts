@@ -27,11 +27,12 @@ describe('User API is working', () => {
    **/
 
   it('should create new user', (done) => {
-    expect(false).to.be.true;
     request(app)
       .post('/api/users/create')
       .send(user)
       .end((err, res) => {
+        console.log("herree")
+        expect(false).to.be.true;
         expect(err).to.equal(null);
         expect(res.status).to.equal(HTTPStatus.OK);
         const { body } = res;
