@@ -23,6 +23,4 @@ jobs:
             - ./node_modules
       - run:
           name: test
-          command: |
-              set -e
-              npm test
+          command: npm test
