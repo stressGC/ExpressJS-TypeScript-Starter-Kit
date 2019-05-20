@@ -5,7 +5,7 @@ import { expect } from 'chai';
 import * as request from 'supertest';
 import * as HTTPStatus from 'http-status-codes';
 
-describe('test global API behavior', () => {
+describe('API behavior is correct', () => {
   it('should return 404 if no path matched', (done) => {
     const randomPath = '/somerandompath';
     request(app)
