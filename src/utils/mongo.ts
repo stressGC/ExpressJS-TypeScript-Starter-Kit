@@ -14,7 +14,7 @@ const options = {
  * initialise mongoDB connection
  */
 const init = () => {
-console.log("starting mongo init")
+  console.log('starting mongo init');
   /* remove deprecated options */
   mongoose.set('useCreateIndex', true);
   mongoose.set('useFindAndModify', false);
@@ -24,10 +24,13 @@ console.log("starting mongo init")
     :
     process.env.MONGO_DB;
 
-    console.log(`mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_HOST}/${DB_NAME}`)
+  console.log('MONGO_HOST', process.env.MONGO_HOST);
+  console.log('MONGO_PORT', process.env.MONGO_PORT);
+  console.log('DB_NAME', DB_NAME);
+  console.log(`mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${DB_NAME}`);
   /* connect */
   mongoose.connect(
-    `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_HOST}/${DB_NAME}`,
+    `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${DB_NAME}`,
     options,
     (err) => {
       if (err) {
