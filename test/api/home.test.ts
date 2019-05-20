@@ -11,6 +11,7 @@ describe('API behavior is correct', () => {
     request(app)
       .get(randomPath)
       .end((err, res) => {
+        expect(true).to.be.false;
         expect(err).to.be.null;
         expect(res.status).to.equal(HTTPStatus.NOT_FOUND);
         done();
