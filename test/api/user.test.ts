@@ -27,6 +27,7 @@ describe('User API is working', () => {
    **/
 
   it('should create new user', (done) => {
+    expect(false).to.be.true;
     request(app)
       .post('/api/users/create')
       .send(user)
