@@ -23,7 +23,7 @@ const init = () => {
     process.env.MONGO_TEST_DB
     :
     process.env.MONGO_DB;
-
+  console.log(process.env)
   console.log('MONGO_HOST', process.env.MONGO_HOST);
   console.log('MONGO_PORT', process.env.MONGO_PORT);
   console.log('DB_NAME', DB_NAME);
