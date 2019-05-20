@@ -14,7 +14,7 @@ const options = {
  * initialise mongoDB connection
  */
 const init = () => {
-
+console.log("starting mongo init")
   /* remove deprecated options */
   mongoose.set('useCreateIndex', true);
   mongoose.set('useFindAndModify', false);
@@ -24,16 +24,18 @@ const init = () => {
     :
     process.env.MONGO_DB;
 
+    console.log(`mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_HOST}/${DB_NAME}`)
   /* connect */
   mongoose.connect(
     `mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_HOST}/${DB_NAME}`,
     options,
     (err) => {
       if (err) {
+        console.log(`Error while connecting to MongoDB: ${err}`)
         winston.error(`Error while connecting to MongoDB: ${err}`);
         return process.exit(0);
       }
-
+      console.log("connected to mongodb")
       winston.debug('Connected to MongoDB');
 
     /* close mongo connection on SIGINT */
