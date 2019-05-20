@@ -32,8 +32,6 @@ describe('User API is working', () => {
       .post('/api/users/create')
       .send(user)
       .end((err, res) => {
-        console.log("herree")
-        expect(false).to.be.true;
         expect(err).to.equal(null);
         expect(res.status).to.equal(HTTPStatus.OK);
         const { body } = res;
