@@ -27,6 +27,7 @@ describe('User API is working', () => {
    **/
 
   it('should create new user', (done) => {
+    console.log("herree 11")
     request(app)
       .post('/api/users/create')
       .send(user)
