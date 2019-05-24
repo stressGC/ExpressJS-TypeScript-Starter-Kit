@@ -4,13 +4,14 @@ Boilerplate for the backend part of the MERN stack. Is it mainly composed of an 
 
 ## Quickstart
 
-### Requirements :
+### Requirements
 - NodeJS, downloadable [here](https://nodejs.org/en/)
 - NPM, downloadable [here](https://www.npmjs.com/)
 - MongoDB, downloadable [here](https://www.mongodb.com/)
 
 ### Installation
 Once these requirements are met, you can clone the repository and start your own project !
+
 ```bash
 git clone git@github.com:stressGC/MERN-Backend.git <localName>
 cd <localName>
@@ -25,10 +26,10 @@ npm test # launches the tests
 ```
 Using tools like [PM2](http://pm2.keymetrics.io/) may be a more secure way of deploying to production.
 
-## Components :
+## Components
 Main components contained in this boilerplate.
 
-**API basics**:
+**API basics**
 - ExpressJS
 - Mongoose
 - Loggers : Winston & Morgan
@@ -38,18 +39,18 @@ Main components contained in this boilerplate.
 - Request validation
 - Environment variables
 ---
-**Code quality**:
-- TSLint
+**DevOps**
 - Tests (mocha & chai)
-- Git files : .gitignore & .gitattributes
-- Continuous Integration : CircleCI
+- CircleCI: test running
+- CircleCI: auto deployment
 --- 
-**Development helpers**:
+**Development helpers**
 - TypeScript auto-compilator
 - Development daemon
+- TSLint
 - JSDoc support
 
-## Project structure : 
+## Project structure 
 ```
 root
 ├── src
@@ -69,9 +70,9 @@ root
 └── [...]
 ```
 
-## Roadmap:
+## Roadmap
 Things I am planning to add to this project.
-- Continous Integration Tools: add linting tests
+- Add linting tests
 - Dockerfile
 - JWT
 - lint all files
