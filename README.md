@@ -20,15 +20,21 @@ cd <localName>
 npm install
 ```
 ### Usage
+
+#### Basic usage
 Make sure MongoDB is running
 ```bash
 npm run watch # development mode, hot reload
 npm start # production mode
 npm test # launches the tests
 ```
+#### Advanced: deployment
+
+Tutorial on [how to deploy a Node app to an AWS server](https://hackernoon.com/tutorial-creating-and-managing-a-node-js-server-on-aws-part-1-d67367ac5171).
+
 Using tools like [PM2](http://pm2.keymetrics.io/) may be a more secure way of deploying to production.
 
-This repository contains a [CircleCI](https://circleci.com/) configuration file, almost ready to automate testing, and deployment. It basically make sure the test script passes (**_npm test_**), then if the commit has been made to the master branch, it deploys to the server (**_npm run deploy_**). Some environment variables must be filled for it to work. 
+This repository contains a [CircleCI](https://circleci.com/) configuration file, it automates testing, and deployment. It basically make sure the test script passes (**_npm test_**), then if the commit has been made to the master branch, it deploys to the server (**_npm run deploy_**). Some environment variables must be filled for it to work. 
 
 A good tutorial is viewable on [Youtube](https://www.youtube.com/watch?v=0OjEx2UzLUI).
 
