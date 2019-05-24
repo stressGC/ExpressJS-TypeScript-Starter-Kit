@@ -4,6 +4,9 @@
   "description": "MERN stack backend starter kit",
   "main": "src/index.js",
   "scripts": {
+    "deploy": "npm run update-source && npm run restart",
+    "update-source": "git fetch --all && git reset --hard origin/master",
+    "restart": "pm2 reload all",
     "start": "node dist/index.js",
     "test": "mocha --opts \"./test/mocha.opts\"",
     "watch-ts": "tsc -w",
