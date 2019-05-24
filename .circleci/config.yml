@@ -2,13 +2,15 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:9.4
-      - image: mongo:3.6.2
+      - image: circleci/node:<NODE_VERSION>
+      - image: mongo:<MONGO_VERSION>
     environment:
       NODE_ENV: test
-      MONGO_HOST: localhost
-      MONGO_PORT: 27017
-      MONGO_DB: DB_NAME
+      MONGO_HOST: <MONGO_HOST>
+      MONGO_PORT: <MONGO_PORT>
+      MONGO_DB: <DB_NAME>
+      SSH_HOST: <SSH_HOST>
+      SSH_USER: <SSH_USER>
 
     steps:
       - checkout
@@ -27,3 +29,30 @@ jobs:
       - run:
           name: test
           command: npm test
+  deploy:    
+    environment:
+      SSH_HOST: <SSH_HOST>
+      SSH_USER: <SSH_USER>
+      DEPLOY_FOLDER_PATH: <DEPLOY_FOLDER_PATH>
+    machine:
+      enabled: true
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - <fingerprints>
+      - run:
+          name: Deploy 
+          command: |
+            ssh $SSH_USER@$SSH_HOST "source /etc/profile; cd $DEPLOY_FOLDER_PATH; npm run deploy"
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build   
+          filters: 
+            branches:
+              only: master

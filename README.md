@@ -42,6 +42,7 @@ Main components contained in this boilerplate.
 - TSLint
 - Tests (mocha & chai)
 - Git files : .gitignore & .gitattributes
+- Continuous Integration : CircleCI
 --- 
 **Development helpers**:
 - TypeScript auto-compilator
@@ -70,13 +71,12 @@ root
 
 ## Roadmap:
 Things I am planning to add to this project.
-- Continous Integration Tools
+- Continous Integration Tools: add linting tests
 - Dockerfile
 - JWT
 - lint all files
 - exists in helper
 - wait mongo connection on launch
-- add linting tests to test 
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
