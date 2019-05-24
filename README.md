@@ -26,6 +26,10 @@ npm test # launches the tests
 ```
 Using tools like [PM2](http://pm2.keymetrics.io/) may be a more secure way of deploying to production.
 
+This repository contains a [CircleCI](https://circleci.com/) configuration file, almost ready to automate testing, and deployment. It basically make sure the test script passes (**_npm test_**), then if the commit has been made to the master branch, it deploys to the server (**_npm run deploy_**). Some environment variables must be filled for it to work. 
+
+A good tutorial is viewable on [Youtube](https://www.youtube.com/watch?v=0OjEx2UzLUI).
+
 ## Components
 Main components contained in this boilerplate.
 
