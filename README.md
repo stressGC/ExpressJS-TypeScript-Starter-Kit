@@ -2,6 +2,8 @@
 
 Boilerplate for the backend part of the MERN stack. Is it mainly composed of an ExpressJS App written in TypeScript.
 
+[![CircleCI](https://circleci.com/gh/stressGC/ExpressJS-TypeScript-Starter-Kit.svg?style=svg)](https://circleci.com/gh/stressGC/ExpressJS-TypeScript-Starter-Kit)
+
 ## Quickstart
 
 ### Requirements
