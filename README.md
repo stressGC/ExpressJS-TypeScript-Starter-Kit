@@ -86,10 +86,7 @@ root
 Things I am planning to add to this project.
 - Add linting tests
 - Dockerfile
-- JWT
-- lint all files
-- exists in helper
-- wait mongo connection on launch
+- JWT handling
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
