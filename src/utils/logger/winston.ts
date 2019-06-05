@@ -5,6 +5,7 @@ import * as path  from 'path';
 import { Logger, format } from 'winston';
 require('dotenv').config();
 
+/* options based on NODE_ENV */
 const options = (process.env.NODE_ENV === 'test') ? {
   level: 'emerg',
   silent: true,

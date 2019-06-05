@@ -4,7 +4,15 @@ import { Request, Response, NextFunction } from 'express';
 import { validationResult } from 'express-validator/check';
 import { BAD_REQUEST, getStatusText } from 'http-status-codes';
 
-export const validationErrorHandler = (req: Request, res: Response, next: NextFunction) => { // tslint:disable: max-line-length
+/**
+ * Validation handler middleware, must be placed after all validation is done
+ *
+ * @param {Request} req
+ * @param {Response} res
+ * @param {NextFunction} next
+ * @returns
+ */
+const validationErrorHandler = (req: Request, res: Response, next: NextFunction) => { // tslint:disable: max-line-length
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {

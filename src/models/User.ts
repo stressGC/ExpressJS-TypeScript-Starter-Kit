@@ -6,8 +6,10 @@ import * as Boom from '@hapi/boom';
 import { INTERNAL_SERVER_ERROR, getStatusText } from 'http-status-codes';
 import { RESSOURCE_NOT_FOUND, EMAIL_ALREADY_TAKEN } from '../utils/lang';
 
+/* user document extended */
 export interface IUser extends IUserDocument {}
 
+/* user model extended */
 export interface IUserModel extends Model<IUser> {
   fetchAll(): Promise<{}>;
   fetchByID(userID: string): Promise<{}>;
@@ -16,6 +18,7 @@ export interface IUserModel extends Model<IUser> {
   modifyByID(userID: string, modifications: {}): Promise<{}>;
 }
 
+/** Mongoose User Schema */
 export const userSchema: Schema = new Schema({
   name: String,
   email: {
@@ -26,6 +29,7 @@ export const userSchema: Schema = new Schema({
   password: String,
 });
 
+// we want to up automatically add the createdAt if not present
 userSchema.pre<IUserDocument>('save', function (next) {
   if (!this.createdAt) {
     this.createdAt = Date.now();
@@ -33,7 +37,12 @@ userSchema.pre<IUserDocument>('save', function (next) {
   next();
 });
 
-userSchema.statics.fetchAll = function () {
+/**
+ * Fetches all users on DB
+ *
+ * @returns {Promise<{}>} Promise Object to be called by the controller
+ */
+userSchema.statics.fetchAll = function (): Promise<{}> {
   return new Promise((resolve, reject) => {
     this.find({}).select('-__v -password').exec((err: any, docs: any) => {
       if (err) return reject(Boom.internal(getStatusText(INTERNAL_SERVER_ERROR)));
@@ -42,6 +51,12 @@ userSchema.statics.fetchAll = function () {
   });
 };
 
+/**
+ * Fetches a User based on its ID
+ *
+ * @param {String} userID user ID (MongoID format) to be fetched
+ * @returns {Promise<{}>} Promise Object to be called by the controller
+ */
 userSchema.statics.fetchByID = function (userID: string) {
   return new Promise((resolve, reject) => {
     this.findById(userID).select('-__v -password').exec((err: any, user: IUserDocument) => {
@@ -52,6 +67,12 @@ userSchema.statics.fetchByID = function (userID: string) {
   });
 };
 
+/**
+ * Inserts a new User
+ *
+ * @param {any} newUser JSON containing the new user infos
+ * @returns {Promise<{}>} Promise Object to be called by the controller
+ */
 userSchema.statics.insertOne = function (newUser: any) {
   return new Promise((resolve, reject) => {
     this.create(newUser, (err: any, user: IUserDocument) => {
@@ -65,6 +86,13 @@ userSchema.statics.insertOne = function (newUser: any) {
   });
 };
 
+/**
+ * Fetches a User based on its ID
+ *
+ * @param {String} userID user ID (MongoID format) to be fetched
+ * @param {any} midifications JSON containing the updated user infos
+ * @returns {Promise<{}>} Promise Object to be called by the controller
+ */
 userSchema.statics.modifyByID = function (userID: string, modifications: {}) {
   return new Promise((resolve, reject) => {
     this.findOneAndUpdate(
@@ -80,6 +108,12 @@ userSchema.statics.modifyByID = function (userID: string, modifications: {}) {
   });
 };
 
+/**
+ * Deletes a user based on its ID
+ *
+ * @param {any} userID user ID (MongoID format) to be deleted
+ * @returns {Promise<{}>} Promise Object to be called by the controller
+ */
 userSchema.statics.deleteByID = function (userID: string) {
   return new Promise((resolve, reject) => {
     this.findOneAndRemove(userID, (err: any, user: IUserDocument) => {

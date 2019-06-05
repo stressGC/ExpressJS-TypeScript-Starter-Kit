@@ -10,7 +10,7 @@ const morganLogType: string = (process.env.NODE_ENV === 'production') ? 'common'
  * logs all requests with status code > 400 [ERRORS]
  */
 export const errorLogging = morgan(morganLogType, {
-  skip: (_req: Request, res: Response) => res.statusCode < 400,
+  skip: (req: Request, res: Response) => res.statusCode < 400,
   stream: process.stderr,
 });
 
@@ -18,6 +18,6 @@ export const errorLogging = morgan(morganLogType, {
  * logs all requests with status code < 400 [SUCCESS]
  */
 export const successLogging = morgan(morganLogType, {
-  skip: (_req: Request, res: Response) => res.statusCode >= 400,
+  skip: (req: Request, res: Response) => res.statusCode >= 400,
   stream: process.stdout,
 });

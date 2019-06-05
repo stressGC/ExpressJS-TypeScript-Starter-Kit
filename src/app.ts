@@ -1,5 +1,6 @@
 'use strict';
 
+/* all imports */
 import * as express from 'express';
 import routes from './routes';
 import * as morgan from './utils/logger/morgan';
@@ -8,7 +9,6 @@ import cors from './middlewares/cors';
 import mongo from './utils/mongo';
 import genericErrorHandler from './middlewares/genericErrorHandler';
 import notFoundErrorHandler from './middlewares/notFoundErrorHandler';
-
 require('dotenv').config();
 
 /* instanciate app */
@@ -38,6 +38,6 @@ app.use('/api', routes);
 
 /* error middlewares */
 app.use(genericErrorHandler);
-app.use(notFoundErrorHandler);
+app.use(notFoundErrorHandler); // must be the last one !
 
 export default app;

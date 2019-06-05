@@ -12,6 +12,7 @@ import { INTERNAL_SERVER_ERROR, getStatusText } from 'http-status-codes';
  * @param {Response} res
  */
 const genericErrorHandler = (err: any, req: Request, res: Response, next: NextFunction): Response => { // tslint:disable: max-line-length
+  // Error is of type Boom
   if (err.isBoom) {
     winston.debug(err.output.payload.message);
     return res.status(err.output.statusCode).json({
@@ -22,6 +23,7 @@ const genericErrorHandler = (err: any, req: Request, res: Response, next: NextFu
     });
   }
 
+  // Unknown internal error
   return res.status(INTERNAL_SERVER_ERROR).json({
     error: {
       code: INTERNAL_SERVER_ERROR,
