@@ -6,11 +6,8 @@ import * as Boom from '@hapi/boom';
 import { INTERNAL_SERVER_ERROR, getStatusText } from 'http-status-codes';
 import { RESSOURCE_NOT_FOUND, EMAIL_ALREADY_TAKEN } from '../utils/lang';
 
-/* user document extended */
-export interface IUser extends IUserDocument {}
-
 /* user model extended */
-export interface IUserModel extends Model<IUser> {
+export interface IUserModel extends Model<IUserDocument> {
   fetchAll(): Promise<{}>;
   fetchByID(userID: string): Promise<{}>;
   insertOne(newUser: any): Promise<{}>;
@@ -36,6 +33,11 @@ userSchema.pre<IUserDocument>('save', function (next) {
   }
   next();
 });
+
+userSchema.methods.comparePassword = function (password: string): boolean {
+  console.log('password', this.password, password);
+  return (this.password === password);
+};
 
 /**
  * Fetches all users on DB

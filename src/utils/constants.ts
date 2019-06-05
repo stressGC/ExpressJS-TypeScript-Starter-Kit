@@ -5,3 +5,7 @@ export const USER = {
   IS_ID_CORRECT: 'user:id-correct',
   MODIFICATION: 'user:modification',
 };
+
+export const AUTH = {
+  LOGIN: 'auth:login',
+};

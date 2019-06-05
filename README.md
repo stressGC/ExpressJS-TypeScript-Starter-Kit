@@ -87,6 +87,7 @@ Things I am planning to add to this project.
 - Add linting tests
 - Dockerfile
 - JWT handling
+- password hashing
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

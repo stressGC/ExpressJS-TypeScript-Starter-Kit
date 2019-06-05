@@ -6,8 +6,10 @@ import { Schema, Document } from 'mongoose';
  * @extends {Document}
  */
 export default interface IUserDocument extends Document {
+  _doc: {};
   name: string;
   email: string;
   createdAt?: Number;
   password: string;
+  comparePassword: (password: string) => boolean;
 }
