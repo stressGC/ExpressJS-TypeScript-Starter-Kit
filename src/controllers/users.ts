@@ -6,11 +6,12 @@ import User from './../models/User';
 import IUserDocument from '../interfaces/IUserDocument';
 
 /**
- * Utility function that returns an Number between 0 & 500
+ * Fetches all users and return them as a JSON
  *
  * @param {Request} _req
  * @param {Response} res
- * @returns {Number} random Number between 0 & 500
+ * @param {NextFunction} next
+ * @returns {Response}
  */
 export const getAll = (req: Request, res: Response, next: NextFunction): void => {
   User
@@ -19,6 +20,14 @@ export const getAll = (req: Request, res: Response, next: NextFunction): void =>
     .catch(error => next(error));
 };
 
+/**
+ * Fetches an User based on its ID, and returns it as a JSON
+ *
+ * @param {Request} _req
+ * @param {Response} res
+ * @param {NextFunction} next
+ * @returns {Response}
+ */
 export const getByID = (req: Request, res: Response, next: NextFunction): void => {
   const { userID } = req.params;
 
@@ -28,6 +37,14 @@ export const getByID = (req: Request, res: Response, next: NextFunction): void =
     .catch((error: any) => next(error));
 };
 
+/**
+ * Updates an User based on its ID, and returns the updated user as a JSON
+ *
+ * @param {Request} _req
+ * @param {Response} res
+ * @param {NextFunction} next
+ * @returns {Response}
+ */
 export const modifyByID = (req: Request, res: Response, next: NextFunction): void => {
   const { userID } = req.params;
   const modifications = req.body;
@@ -38,6 +55,14 @@ export const modifyByID = (req: Request, res: Response, next: NextFunction): voi
     .catch((error: any) => next(error));
 };
 
+/**
+ * Creates a new User, and returns it as a JSON
+ *
+ * @param {Request} _req
+ * @param {Response} res
+ * @param {NextFunction} next
+ * @returns {Response}
+ */
 export const create = (req: Request, res: Response, next: NextFunction): void => {
   const { name, email, password } = req.body;
 
@@ -53,6 +78,14 @@ export const create = (req: Request, res: Response, next: NextFunction): void =>
     .catch((error: any) => next(error));
 };
 
+/**
+ * Deletes a User based on its ID, and returns the deleted user as a JSON
+ *
+ * @param {Request} _req
+ * @param {Response} res
+ * @param {NextFunction} next
+ * @returns {Response}
+ */
 export const deleteByID = (req: Request, res: Response, next: NextFunction): void => {
   const { userID } = req.params;
 
