@@ -6,7 +6,7 @@ import { Schema, Document } from 'mongoose';
  * @extends {Document}
  */
 export default interface IUserDocument extends Document {
-  _doc: {};
+  _doc: { [key: string]: any };
   name: string;
   email: string;
   createdAt?: Number;

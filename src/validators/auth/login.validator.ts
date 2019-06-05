@@ -1,32 +1,34 @@
-import User from '../models/User';
-import IUserDocument from '../interfaces/IUserDocument';
-import { ValidationChain, body, param } from 'express-validator/check';
-import * as lang from '../utils/lang';
+'use strict';
+
+import User from '../../models/User';
+import IUserDocument from '../../interfaces/IUserDocument';
+import { ValidationChain, validationResult } from 'express-validator/check';
 import * as Boom from '@hapi/boom';
 import { getStatusText, INTERNAL_SERVER_ERROR, FORBIDDEN } from 'http-status-codes';
 import { NextFunction, Response, Request } from 'express';
+import { BODY } from '../index';
 
-/**
- * returns a 'is_present' validator based of fieldName
- *
- * @param {string} fieldName
- */
-export const exists = (fieldName: string, where: 'body' | 'param') => {
-  if (where === 'param') return param(fieldName, lang.fieldMissing(fieldName)).exists();
-  return body(fieldName, lang.fieldMissing(fieldName)).exists();
-};
-
-const MISSING_EMAIL: ValidationChain = exists('email', 'body');
-const MISSING_PASSWORD: ValidationChain = exists('password', 'body');
-
-// valid login wrapper
+/* valid login request logic */
 const VALID_LOGIN_REQUEST: ValidationChain[] = [
-  MISSING_EMAIL,
-  MISSING_PASSWORD,
+  BODY.MISSING_EMAIL,
+  BODY.MISSING_PASSWORD,
 ];
 
-const MATCHING_CREDENTIALS = (req: Request, res: Response, next: NextFunction) => {
+/**
+ * checks if the provided credentials are correct
+ *
+ * @param {Request} req
+ * @param {Response} res
+ * @param {NextFunction} next
+ * @returns
+ */
+const credentialsMatches = (req: Request, res: Response, next: NextFunction) => {
+  // bad request, no need to continue
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) return next(Boom.forbidden(getStatusText(FORBIDDEN)));
+
   const { email, password } = req.body;
+
   User.findOne({ email }, (err: any, user: IUserDocument) => {
     // internal error
     if (err) return next(Boom.internal(getStatusText(INTERNAL_SERVER_ERROR)));
@@ -36,6 +38,8 @@ const MATCHING_CREDENTIALS = (req: Request, res: Response, next: NextFunction) =
 
     // passwords dont match
     if (!user.comparePassword(password)) return next(Boom.forbidden(getStatusText(FORBIDDEN)));
+
+    // format user and remove unwanted infos
     const formattedUser = { ...user._doc };
     delete formattedUser.password;
     delete formattedUser.__v;
@@ -51,7 +55,9 @@ const MATCHING_CREDENTIALS = (req: Request, res: Response, next: NextFunction) =
  * @email is present & valid email
  * @password is valid & matches
  */
-export const validateCredentials = [
+const validCredentials = [
   ...VALID_LOGIN_REQUEST,
-  MATCHING_CREDENTIALS,
+  credentialsMatches,
 ];
+
+export default validCredentials;
