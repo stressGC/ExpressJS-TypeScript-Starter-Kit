@@ -55,7 +55,7 @@
     "http-status-codes": "^1.3.2",
     "mongoose": "^5.7.5",
     "morgan": "^1.9.1",
-    "npm": "^6.13.4",
+    "npm": "^6.14.6",
     "path": "^0.12.7",
     "winston": "^3.2.1"
   },
