@@ -39,7 +39,7 @@
   },
   "homepage": "https://github.com/stressGC/MERN-Backend#readme",
   "dependencies": {
-    "@hapi/boom": "^7.4.2",
+    "@hapi/boom": "^7.4.11",
     "@types/chai": "^4.1.7",
     "@types/hapi__boom": "^7.4.0",
     "@types/helmet": "0.0.43",
